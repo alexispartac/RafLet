@@ -1,0 +1,30 @@
+
+
+.admin{
+    margin: 30px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin .statistics{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin .statistics .continer{
+    display: block;
+}
+
+.admin .statistics .continer .details{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 100px;
+    margin: 5px 5px;
+}
+
+.admin .update{
+    width: 150px;
+    height: 30px;
+    margin: 5px 0;
+}

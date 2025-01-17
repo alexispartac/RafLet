@@ -1,0 +1,34 @@
+
+.home{
+    display: flex;
+    font-size: 1rem;
+}
+
+.filter-items{
+    display: flex;
+    padding: 0.5rem;
+}
+
+.filter-items h4{
+    width: 1fr;
+    padding: 0.5rem;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.filter-items button{
+    background-color: transparent;
+    border: none;
+}
+
+.filter-items button img{
+    width: 20px;
+} 
+
+.items{
+    display: grid;
+    gap: 0;
+    padding-bottom: 2rem;
+    grid-template-columns: auto auto;
+    border-bottom: 1px solid #555;
+}

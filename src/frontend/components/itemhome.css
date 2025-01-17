@@ -1,0 +1,44 @@
+.item-home{
+    display: block;
+    position: relative;
+}
+
+.item-home button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.item-home button img{
+    width: 20px;
+    z-index: 0;
+    position: relative;
+    top: 1px;
+    padding: 10px;
+} 
+
+.item-home div{
+    padding: 10px;
+}
+
+.item-home p{
+    font-family:Montserrat, Arial, sans-serif;
+}
+
+.image, .item-link{
+    width: 100%;
+}
+
+.item-home-continer{
+    font: 1em sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0.3rem;
+}
+
+.item-home-continer .price{
+    color: red;
+}

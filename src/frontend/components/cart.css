@@ -1,0 +1,36 @@
+
+.cart-continer{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 50vh;
+    flex-direction: column;
+}
+
+.cart-continer *{
+    color: black;
+    text-decoration: none;
+}
+
+.cart-continer button{
+    background-color: rgb(151, 15, 15);
+    color: white;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.cart-continer button:hover:active{
+    background-color: white;
+    color: rgb(151, 15, 15);
+}
+
+.cart-body{
+    margin: 30px 10px;
+}
+
+.cart-empty{
+    padding: 50px 40px;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}

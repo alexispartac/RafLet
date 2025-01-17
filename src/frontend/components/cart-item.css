@@ -1,0 +1,15 @@
+
+.cart-item-body{
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px
+}
+
+.cart-item-body-det{
+    margin: 2px 2px;
+}
+
+.cart-item-image-fav{
+    width: 70px;
+    height: 70px;
+}

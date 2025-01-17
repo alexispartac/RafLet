@@ -1,0 +1,15 @@
+:root{
+    --promo-color: rgb(151, 15, 15);
+}
+
+.promotions {
+    text-align: center;
+    text-decoration: none;
+}
+
+.adds{
+    color: white;
+    background-color: var(--promo-color);
+    padding: 2vh;
+    border-radius: 0.3vh;
+}

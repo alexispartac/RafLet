@@ -1,0 +1,42 @@
+
+.home{
+    display: flex;
+    flex-direction: column;
+}
+
+.social-media{
+    justify-content: center;
+    padding: 40px 0;
+    margin: auto;
+    text-align: center;
+}
+
+.social-media div {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.social-media div img{
+    width: 25px;
+    height: 25px;
+}
+
+.home .info{
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid #555;
+}
+
+.home footer{
+    padding: 20px 30px;
+}
+
+footer h6{
+    line-height: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+}

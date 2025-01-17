@@ -1,0 +1,117 @@
+
+.navbar{
+    top: 0;
+    position: sticky;
+    border-bottom: 1px solid #555;
+    background-color: white;
+    z-index: 1;
+}
+
+.continer * {
+    color: black;
+    text-decoration: none;
+}
+
+.continer{
+    display: flex;
+    flex-direction: row;
+    height: 0.5fr;
+    margin: 0.3rem;
+    background-color: white;
+}
+
+.menu-button{
+    height: 20px;
+    width: 20px;
+    padding: 0.3rem;
+}
+
+.menu-button button img{
+    width: 25px;
+    position: relative;
+    top: 4px;
+} 
+
+.navbar-menu button img{
+    width: 25px;
+    position: relative;
+    top: 1px;
+    padding: 0.2rem;
+} 
+
+.menu-button button{
+    background-color: white;
+    border: none;
+}
+
+.logo{
+    width: 100px;
+    height: inherit;
+    text-align: center;
+    padding: 0.3rem;
+}
+
+.user-info{
+    height: inherit;
+    display: flex;
+    width: 85%;
+    direction: rtl;
+    gap: 10px;
+    padding-top: 5px;
+}
+
+.user-info img{
+    width: 20px;
+}
+
+.user-info div {
+    width: 50px;
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+.search{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 10px;
+    padding-top: 15px;
+}
+
+.search-items{
+    width: inherit;
+    text-indent: 5px;
+    padding: 3px;
+    color: var(--general-color);
+}
+
+.navbar-menu{ 
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
+    text-align: center; 
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    height: 0; 
+    background-color: white;
+    color: black;
+    transition:linear 0.5s ease;
+}
+
+.navbar-item { 
+    padding: 1rem; 
+    list-style: none;
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid #555;
+    text-align: left;
+}
+
+.navbar-menu-button{
+    text-align: end;
+    background: white;
+    border: none;
+    border-bottom: 1px solid #555;
+}

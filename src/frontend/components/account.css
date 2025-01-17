@@ -1,0 +1,81 @@
+
+.error{
+    padding: 20px 30px;
+    color: #d80011;
+    font-size: larger;
+    text-align: center;
+}
+
+.account-body{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+}
+
+.account-body .title{
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.account-body .email, .password{
+    border: none;
+    margin-top: 10px;
+    height: 30px;
+    width: 100pxs;
+    border-bottom: 1px solid #555;
+    text-indent: 5px;
+    font-size: medium;
+}
+
+.account-body .login{
+    padding: 15px;
+    width: 100%;
+    background-color: rgb(151, 15, 15);
+    color: white;
+    box-shadow: 2px 0.5px 2px rgb(196, 196, 196);
+    font-size: medium;
+    border: 1px solid ghostwhite;
+}
+
+.account-body .login:hover:active{
+    background-color: white;
+    color: rgb(151, 15, 15);
+}
+
+.logout{
+    padding: 15px;
+    width: 100%;
+    background-color: rgb(151, 15, 15);
+    color: white;
+    box-shadow: 2px 0.5px 2px rgb(196, 196, 196);
+    font-size: medium;
+    border: 1px solid ghostwhite;
+}
+
+.logout:hover:active{
+    background-color: white;
+    color: rgb(151, 15, 15);
+}
+
+.title {
+    margin: 20px 10px;
+}
+
+.account-details{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 60px;
+}
+
+.account-details *{
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.signin{
+    text-align: center;
+}
+
