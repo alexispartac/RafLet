@@ -12,7 +12,9 @@ import Admin from './components/Admin.tsx';
 import SignIn from './components/SignIn.tsx';
 import DetailsAccount from './components/DetailsAccount.tsx';
 import MyDiscount from './components/MyDiscount.tsx';
+
 const PageRoutes = () => {
+
     return (
         <Routes>
             <Route path="/admin" element={<Admin />} />

@@ -23,8 +23,8 @@ const VerifyToken = ( accessToken: string | undefined) => {
 
 export const getItems = async(req: IReq, res: IRes): Promise<unknown> => {
     try{
-
         const items = await ITEMS.find().toArray();
+
         return res.status(200).json({message: 'Items!', items: items});
     }catch(error: unknown){
         return res.status(400).json({error: 'Produsele nu s au putut incarca!'});
@@ -54,6 +54,9 @@ export const uploadImage = (req: IReq, res: any) => {
 export const addDiscount = (req: any, res: any) => {
     // const discount  = req.body;
     
+    if(VerifyToken(req.headers.accesstoken) )
+        return res.status(401).json({ message: 'Unauthorized!' });
+
     // adauga discount la toate produsele din baza de date
 
     res.send('Discount added!');
@@ -61,7 +64,9 @@ export const addDiscount = (req: any, res: any) => {
 
 export const deleteDiscount = (req: any, res: any) => {
     const { discount } = req.body;
-    console.log(discount);
+    if(VerifyToken(req.headers.accesstoken) )
+        return res.status(401).json({ message: 'Unauthorized!' });
+
     // sterge discount la toate produsele din baza de date
 
     res.send('Discount deleted!');
@@ -71,12 +76,16 @@ export const deleteDiscount = (req: any, res: any) => {
 export const addItem = (req: any, res: any) => {
     // const  item  = req.body;
     // adauga in baz de date un item
+    if(VerifyToken(req.headers.accesstoken) )
+        return res.status(401).json({ message: 'Unauthorized!' });
 
     res.send('Item added!');
 }
 
 export const deleteItem = (req: any, res: any) => {
     // const { item } = req.body;
+    if(VerifyToken(req.headers.accesstoken) )
+        return res.status(401).json({ message: 'Unauthorized!' });
 
     // sterge din baz de date un item
 

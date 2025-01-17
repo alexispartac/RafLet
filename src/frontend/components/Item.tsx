@@ -2,8 +2,9 @@ import React from "react";
 import { ItemType } from "../@types/item";
 import Footer from "./Footer";
 import ConnectUser from "../utils/hooks/ConnectUser";
-import "./item.css"
 import { useCartDispatch, useFavoriteDispatch, useItems } from "../features/Context/ItemContext";
+import "./item.css"
+
 
 const Item: React.FC<{ item: ItemType}> = ({ item }) => {
     const [describe, setDescribe] = React.useState(false);

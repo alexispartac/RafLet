@@ -1,8 +1,6 @@
 import { ItemType } from "./item";
 
 export interface IContext {
-    oneItem : boolean;
-    handleSetOneItem :() => void;
     items: ItemType[];
     favorite: ItemType[];
     cartItems: ItemType[];  

@@ -14,7 +14,6 @@ const FavoriteDispatchContext = React.createContext<unknown>(null);
 const CartDispatchContext = React.createContext<unknown>(null);
 
 const ItemProvider : React.FC<ProviderProps> = ({ children }) => {
-    const [oneItem, setOneItem] : [oneItem: boolean, setOneItem:  React.Dispatch<React.SetStateAction<boolean>>] = React.useState<boolean>(false);
     const [items, dispatchItems]: [items: ItemType[], action: React.Dispatch<ItemDispatch>]= React.useReducer(ItemReducer, []);
     const [favorite, dispatchFavorite]: [favorite: ItemType[], action: React.Dispatch<FavoriteDispatch>]= React.useReducer(FavoriteReducer, []);
     const [cartItems, dispatchCart]: [cartItems: ItemType[], action: React.Dispatch<CartDispatch>]= React.useReducer(CartReducer, []);
@@ -40,13 +39,8 @@ const ItemProvider : React.FC<ProviderProps> = ({ children }) => {
         }, 500)
     },[])
 
-
-    const handleSetOneItem = () => {
-        setOneItem(!oneItem);
-    }
-
     return (
-        <ItemContext.Provider value={{ items, favorite, cartItems, oneItem, handleSetOneItem }}>
+        <ItemContext.Provider value={{ items, favorite, cartItems }}>
             <ItemDispatchContext.Provider value={dispatchItems}>
                 <CartDispatchContext.Provider value={dispatchCart}>
                     <FavoriteDispatchContext.Provider value={dispatchFavorite}>

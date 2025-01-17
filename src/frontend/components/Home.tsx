@@ -8,7 +8,7 @@ import "./home.css"
 
 const Home = () => {
     const { items }: any= useItems();
-    console.log(items)
+
     return (
         <div className="home">
             <div className="filter-items">
