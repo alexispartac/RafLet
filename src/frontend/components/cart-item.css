@@ -2,14 +2,33 @@
 .cart-item-body{
     display: flex;
     flex-direction: row;
-    padding: 10px 10px
+    padding: 10px 10px;
+    gap: 10px;
 }
 
 .cart-item-body-det{
     margin: 2px 2px;
+    padding: 10px;
 }
 
 .cart-item-image-fav{
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
+}
+
+.cart-item-body-det button{
+    background-color: transparent;
+    border: none;
+}
+
+.cart-item-body-det .count{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 20px;
+    padding: 2px;
+}
+
+.cart-item-body-det button{
+    font-size: 20px;
 }

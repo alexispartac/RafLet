@@ -4,10 +4,17 @@ import ConnectUser from "../utils/hooks/ConnectUser";
 import { useItems, useFavoriteDispatch } from "../features/Context/ItemContext";
 import "./itemhome.css"
 
+import { useNavigate } from "react-router";
+
 const ItemHome: React.FC<{ item: ItemType, key: string }> = ({ item, key }) => {
-    const { favorite } : any= useItems();
     const [favoritItem, setFavoritItem] = React.useState(false);
-    const {token} = ConnectUser();
+    const { favorite } : any= useItems();
+    const { token } = ConnectUser();
+
+    const navigate = useNavigate();
+    const handleItem = () => {
+        navigate(`/item/${item.title + "&&" + item.id}`, { state: { item: item } });
+    }
 
     React.useEffect(() => {
         favorite.forEach( (favoritItem: ItemType) => { 
@@ -16,7 +23,7 @@ const ItemHome: React.FC<{ item: ItemType, key: string }> = ({ item, key }) => {
                 setFavoritItem(true);
             }
         })
-    }, [])
+    }, [favorite])
 
     const dispatchFavorite: any = useFavoriteDispatch();
     const handleFavorite = () => {
@@ -38,7 +45,7 @@ const ItemHome: React.FC<{ item: ItemType, key: string }> = ({ item, key }) => {
     return (
         <div key={key}>
             <div className="item-home" >
-                <img className="image" src={item.img[0]} alt="1" />
+                <img className="image" onClick={handleItem} src={item.img[0]} alt="1" />
                 <button onClick={handleFavorite}>
                 {
                     !favoritItem ?

@@ -14,5 +14,6 @@ export interface Item {
     price: number;
     cart?: boolean;
     favorite?: boolean;
-    description?: string
+    description?: string;
+    gender: string;
 }

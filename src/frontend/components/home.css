@@ -4,12 +4,20 @@
     font-size: 1rem;
 }
 
-.filter-items{
+.home-settings{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    border-bottom: 1px solid gainsboro;
+}
+
+.filter-items, .stock-items, .show-items{
     display: flex;
     padding: 0.5rem;
 }
 
-.filter-items h4{
+.filter-items h4, .stock-items h4{
     width: 1fr;
     padding: 0.5rem;
     text-align: left;
@@ -26,9 +34,34 @@
 } 
 
 .items{
+    margin-top: 20px;
     display: grid;
     gap: 0;
     padding-bottom: 2rem;
     grid-template-columns: auto auto;
     border-bottom: 1px solid #555;
+}
+
+.show-ones{
+    grid-template-columns: auto;
+}
+
+.show-items{
+    align-items: center;
+    margin-left: 10px;
+    gap: 5px;
+}
+
+.show-items button{
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.show-items img{
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
 }

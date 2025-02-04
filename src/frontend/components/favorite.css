@@ -53,3 +53,7 @@
 .favorite-body {
     margin: 30px 10px;
 }
+
+.body{
+    gap: 10px;
+}

@@ -1,35 +1,23 @@
 import React from "react";
-import { ItemType } from "../@types/item";
-import { useItems }  from "../features/Context/ItemContext";
-import ItemHome from "./ItemHome";
-import Footer from "./Footer";
+import FilterItems from "./FilterItems";
+import Items from "./Items";
+import ItemsInStock from "./ItemsInStock";
+import ItemsShow from "./ItemsShow";
 import "./home.css"
 
-
 const Home = () => {
-    const { items }: any= useItems();
+    const [showOnes, setShowOnes]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = React.useState(false);
+
 
     return (
         <div className="home">
-            <div className="filter-items">
-                <button /* onClick={handleFilter} */>
-                    <img src="./src/assets/favicons/menu.png" alt="filter" />
-                </button>   
-                <h4>
-                    Filtre
-                </h4>
+            {/* Filter cand o sa fie mai multe produse */}
+            <div className="home-settings">
+                <FilterItems />
+                <ItemsInStock />
+                <ItemsShow setShowOnes={setShowOnes} showOnes={showOnes}/>
             </div>
-            {/* creere pentru mai mult de 50 produse un buton care sa le afisze pe restul */}
-            <div className="items">
-                {
-                    items.map( (item: ItemType) => {
-                        return (
-                            <ItemHome key={item.id} item={{...item}} />
-                        )
-                    })
-                }
-            </div>
-            <Footer />
+            <Items women={false} men={false} showOnes={showOnes} />
         </div>
     );
 }

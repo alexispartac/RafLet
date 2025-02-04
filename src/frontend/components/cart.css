@@ -20,12 +20,41 @@
     border-radius: 10px;
 }
 
+.pay{
+    display: flex;
+    background-color: rgb(151, 15, 15);
+    color: white;
+    width: 300px;
+    height: 70px;
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow: 2px 2px 2px;
+    margin: auto;
+    align-items: center;
+}
+
+.pay h2{
+    display: flex;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+}
+
+.pay a{
+    color: white;
+    text-decoration: none;
+}
+
+.pay:hover{
+    background-color: rgb(198, 196, 196);
+}
+
 .cart-continer button:hover:active{
     background-color: white;
     color: rgb(151, 15, 15);
 }
 
-.cart-body{
+.cart-body {
     margin: 30px 10px;
 }
 
@@ -33,4 +62,43 @@
     padding: 50px 40px;
     text-align: center;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.order-placed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #f0f0f0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.order-info{
+
+}
+
+
+.info {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+.total-price {
+    font-size: 25px;
+    padding: 0.4rem;
+}
+
+.order-info input, label, button{
+    font-size: large;
 }

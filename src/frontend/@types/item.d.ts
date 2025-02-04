@@ -8,6 +8,7 @@ interface Sizes {
 }
 
 export interface ItemType {
+    
     id: string;
     title: string;
     img: string[];
@@ -15,5 +16,6 @@ export interface ItemType {
     price: number;
     favorite: boolean;
     cart?: boolean;
+    gender: string;
     description?: string
 }

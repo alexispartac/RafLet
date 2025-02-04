@@ -76,29 +76,37 @@
     width: 90%;
     margin: auto;
     padding-bottom: 10px;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
 .search-items{
     width: inherit;
+    height: 30px;
     text-indent: 5px;
-    padding: 3px;
+    padding: 0.2em;
+    border: 0.1em solid black;
+    border-radius: 10px;
     color: var(--general-color);
 }
 
-.navbar-menu{ 
-    display: flex; 
-    flex-direction: column; 
-    width: 100%; 
-    text-align: center; 
-    position: fixed; 
-    top: 0; 
-    right: 0; 
-    height: 0; 
+.navbar-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: -100%; /* Inițial este în afara ecranului, în stânga */
     background-color: white;
     color: black;
-    transition:linear 0.5s ease;
+    transition: left 0.5s; /* Tranziția pentru a face animarea fluidă */
 }
+
+.active{
+    left:0;
+}
+
 
 .navbar-item { 
     padding: 1rem; 

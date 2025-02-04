@@ -4,31 +4,51 @@ import Footer from "./Footer";
 import ConnectUser from "../utils/hooks/ConnectUser";
 import { useCartDispatch, useFavoriteDispatch, useItems } from "../features/Context/ItemContext";
 import "./item.css"
+import { useLocation, useNavigate } from "react-router";
+import { usePriceOrder } from "../features/Context/PriceOrderContext";
+import { useItemsOrder } from "../features/Context/ItemsOrderContext";
 
 
-const Item: React.FC<{ item: ItemType}> = ({ item }) => {
-    const [describe, setDescribe] = React.useState(false);
-    const [maintenance, setMaintenance] = React.useState(false);
-    const [delivery, setDelivery] = React.useState(false);
+const Item = () => {
+    const [describe, setDescribe]: any = React.useState(false);
+    const [maintenance, setMaintenance]: any = React.useState(false);
+    const [delivery, setDelivery]: any = React.useState(false);
+    const [inCart, setInCart]: any = React.useState(false);
+    const [favoritItem, setFavoritItem]: any = React.useState(false);
 
-    const [favoritItem, setFavoritItem] = React.useState(false);
+    const { priceOrder, setPriceOrder }: any = usePriceOrder();
+    const { itemsOrder, setItemsOrder }: any = useItemsOrder();
 
+    const { token } = ConnectUser();
     const dispatchCart: any = useCartDispatch()
     const dispatchFavorite: any = useFavoriteDispatch();
 
-    const {favorite, handleSetOneItem } : any = useItems();
+    const { favorite, cartItems } : any = useItems();
     
+    const location = useLocation()
+    const item : ItemType = location.state.item;
+    
+    const navigate = useNavigate();
+    const handleItemHome = () => {
+        navigate("/");
+    }
+
     React.useEffect(() => {
         favorite.forEach( (favoritItem: ItemType) => { 
             if(favoritItem.id === item.id)
                 {
                     setFavoritItem(true);
                 }
+        });
+        cartItems.forEach( (cartItem: ItemType) => {
+            if(cartItem.id === item.id)
+                {
+                    setInCart(true);
+                }
         })
-    }, [favoritItem])
+    }, [favoritItem, cartItems])
         
         
-    const { token } = ConnectUser();
     const handleFavorite = () => {
         if(token.user) {
             alert("Adaugat la favorite!");  
@@ -56,7 +76,10 @@ const Item: React.FC<{ item: ItemType}> = ({ item }) => {
     const handleCart = () => {
         if(token.user) {
             alert("Adaugat in cos!");
-            dispatchCart({ type: 'add' , cartItem: item})
+            dispatchCart({ type: 'add' , cartItem: item});
+            setPriceOrder(priceOrder + item.price);
+            setItemsOrder([...itemsOrder, { id: item.id, name: item.title, price: item.price, quantity: 1 }]);
+            setInCart(true);
         }else{
             alert("Trebuie sa fiti autentificat pentru a adauga produsele dumneavoastra in cos!");
         }
@@ -73,7 +96,7 @@ const Item: React.FC<{ item: ItemType}> = ({ item }) => {
                     <img className="heart" src="./src/assets/favicons/heart-full.png" alt="heart" />
                 }
                 </button>
-                <button className="back-button" onClick={handleSetOneItem}>
+                <button className="back-button" onClick={handleItemHome}>
                     <img className="back" src="./src/assets/favicons/back-button.png" alt="heart" />
                 </button>
                 <div className="details">
@@ -82,7 +105,7 @@ const Item: React.FC<{ item: ItemType}> = ({ item }) => {
                     <p> Culoare - {item.sizes?.color}</p>
                     <div style={{backgroundColor:`${item.sizes?.color}`, width:"40px", height:"40px"}}></div>
                     <p> Marime - {item.sizes?.size}</p>
-                    <button onClick={handleCart}>
+                    <button disabled={inCart} onClick={handleCart}>
                         <h2>Adauga - {item.price} RON</h2>
                     </button>
                     <h5> Livrare gratuita pentru total peste 250 RON</h5>

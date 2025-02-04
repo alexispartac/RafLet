@@ -26,7 +26,6 @@ const Account = () => {
     }, [email, password]);
 
     async function verifyCredentials(){
-        // aici trebuie schimbat
         try{
           const response = await axios.post(LOGIN_URL,
               {
@@ -73,7 +72,7 @@ const Account = () => {
     
         setEmail('');
         setPassword('');
-      }
+    }
 
     return (
     <div className="account">
@@ -129,6 +128,9 @@ const Account = () => {
                 <Link to="/my-discount">Reduceriile mele</Link>
                 <Link to="/cart">Cosul meu</Link>
                 <Link to="/favorite">Favoritele mele</Link>
+                { token.user !== 'admin' ?
+                    <Link to="/admin">Admin</Link> : null
+                }
                 <br />
                 <button 
                     className="logout"

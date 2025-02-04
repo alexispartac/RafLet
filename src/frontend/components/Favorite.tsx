@@ -49,7 +49,6 @@ const Favorite = () => {
                 </div>
                 : null
             }
-            <Footer />
         </>
         );
 
@@ -70,7 +69,6 @@ const Favorite = () => {
                 :
                 <h1 className="favorite-empty">Nu aveti niciun produs favorit. Intorceti-va la cuparaturi!</h1>
             }
-            <Footer />
         </div>
     );
 

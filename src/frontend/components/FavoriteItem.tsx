@@ -13,7 +13,7 @@ const FavoriteItem: React.FC<{item: ItemType}> = ({ item }) => {
                 <p> {item.title} </p>
                 <p> {item.price} RON</p>
                 <div onClick={() => {dispatchFavorite({id: item.id, type: 'delete'})}} >
-                        ---
+                        x
                 </div>
             </div>
         </div>
