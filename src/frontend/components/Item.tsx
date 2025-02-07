@@ -3,10 +3,10 @@ import { ItemType } from "../@types/item";
 import Footer from "./Footer";
 import ConnectUser from "../utils/hooks/ConnectUser";
 import { useCartDispatch, useFavoriteDispatch, useItems } from "../features/Context/ItemContext";
-import "./item.css"
 import { useLocation, useNavigate } from "react-router";
 import { usePriceOrder } from "../features/Context/PriceOrderContext";
 import { useItemsOrder } from "../features/Context/ItemsOrderContext";
+import "./item.css"
 
 
 const Item = () => {
@@ -91,9 +91,9 @@ const Item = () => {
                 <button className="heart-button" onClick={handleFavorite}>
                 {
                     !favoritItem ?
-                    <img className="heart" src="./src/assets/favicons/heart-empty.png" alt="heart" />
+                    <img className="heart" src="/favicons/heart-empty.png" alt="heart" />
                     :
-                    <img className="heart" src="./src/assets/favicons/heart-full.png" alt="heart" />
+                    <img className="heart" src="/favicons/heart-full.png" alt="heart" />
                 }
                 </button>
                 <button className="back-button" onClick={handleItemHome}>

@@ -8,7 +8,6 @@ interface Sizes {
 }
 
 export interface ItemType {
-    
     id: string;
     title: string;
     img: string[];

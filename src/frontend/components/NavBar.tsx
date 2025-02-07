@@ -14,6 +14,7 @@ const NavBar = () => {
                         <img src="./src/assets/favicons/favicon-menu-off.png" alt="menu-off" />
                     </button>
                 </div>
+                    <div className={`${active ? "nav-menu-back": null}`} onClick={() => setActive(false)}></div>
                     <div className={`navbar-menu ${active ? "active": null}`}>
                         <button className='navbar-menu-button' onClick={() => setActive(false)}>
                             <img src="./src/assets/favicons/favicon-menu-on.png" alt="menu-on" />

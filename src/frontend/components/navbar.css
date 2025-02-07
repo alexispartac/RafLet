@@ -92,7 +92,7 @@
 .navbar-menu {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
     height: 100vh;
     text-align: center;
     position: fixed;
@@ -100,26 +100,40 @@
     left: -100%; /* Inițial este în afara ecranului, în stânga */
     background-color: white;
     color: black;
-    transition: left 0.5s; /* Tranziția pentru a face animarea fluidă */
+    transition: ease-in-out 0.5s; /* Tranziția pentru a face animarea fluidă */
+
 }
 
 .active{
-    left:0;
+    left: 0;
+    border-right: 0.5px solid #afafaf;
 }
 
+.nav-menu-back{
+    display: block;
+    height: 100vh;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0; /* Inițial este în afara ecranului, în stânga */
+    color: black;
+    width: 100%;
+    z-index: 0;
+    background-color: #3c3c3c4d;
+}
 
 .navbar-item { 
     padding: 1rem; 
     list-style: none;
     background-color: white;
     color: black;
-    border-bottom: 1px solid #555;
-    text-align: left;
+    text-align: center;
+    font-size: large;
 }
+
 
 .navbar-menu-button{
     text-align: end;
     background: white;
     border: none;
-    border-bottom: 1px solid #555;
 }

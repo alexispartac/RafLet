@@ -10,6 +10,7 @@
     "start": "nodemon index.ts"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "aws-sdk": "^2.1692.0",
     "axios": "^1.7.9",
     "cors": "^2.8.5",

@@ -8,12 +8,12 @@ const Promotion = () => {
         <div className="promotions" >
             <h5 className="adds">Preturi mai mici la articole promotionale! Intra si descopera-ti favoritele.</h5>
             <div className="links">
-                <a href="/man">
-                    MEN
-                </a>    
-                <a href="/woman">
-                    WOMAN
-                </a>    
+                <Link to="/man">
+                    <li>Man</li>
+                </Link>
+                <Link to="/woman">
+                    <li>Woman</li>
+                </Link>  
             </div>
         
         </div>

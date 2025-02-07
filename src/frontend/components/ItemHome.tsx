@@ -13,7 +13,9 @@ const ItemHome: React.FC<{ item: ItemType, key: string }> = ({ item, key }) => {
 
     const navigate = useNavigate();
     const handleItem = () => {
-        navigate(`/item/${item.title + "&&" + item.id}`, { state: { item: item } });
+        // setTimeout( () => {
+        // }, 100)
+            navigate(`/item/${item.title + "&&" + item.id}`, { state: { item: item } });
     }
 
     React.useEffect(() => {
@@ -64,4 +66,4 @@ const ItemHome: React.FC<{ item: ItemType, key: string }> = ({ item, key }) => {
 }
 
 
-export default React.memo(ItemHome);
+export default ItemHome;

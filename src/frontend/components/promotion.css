@@ -18,6 +18,7 @@
 }
 
 .promotions .links a{
+    list-style: none;
     width: 100vw;
     text-align: center;
     margin: auto;

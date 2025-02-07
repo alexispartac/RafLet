@@ -70,7 +70,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     z-index: 4;
     display: flex;
     flex-direction: column;
@@ -83,10 +83,13 @@
     margin-top: 2em;
 }
 
-.order-info{
-
+.order-info-input{
+    background-color: #f0f0f0;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   padding: 20px;
+   margin: 20px;
+   border-radius: 5px;
 }
-
 
 .info {
     align-items: center;
@@ -101,4 +104,11 @@
 
 .order-info input, label, button{
     font-size: large;
+    padding: 0.15rem;
+}
+
+.submit{
+    margin: auto;
+    align-items: center;
+    padding: 5px;
 }
