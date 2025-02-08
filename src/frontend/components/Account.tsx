@@ -1,10 +1,37 @@
 import { Link } from "react-router-dom";
 import ConnectUser from "../utils/hooks/ConnectUser";
 import React, { useRef, useState, useEffect} from "react";
+// import jwt from "jsonwebtoken"
 import axios from 'axios'
 import "./account.css"
 
-const LOGIN_URL = 'https://asv1p1opj2.execute-api.us-east-1.amazonaws.com/test/login';
+
+// const VerifyAdmin = () : boolean =>{
+//     const { token } = ConnectUser();
+
+//     if(!token.user){
+//         return false;
+//     }
+
+//     const verifyToken : any = jwt.verify(token.user, secretToken , (err, decoded) => {
+//         if (err) {
+//             return false;
+//         }
+//         else {
+//             return decoded;
+//         }
+//     });
+
+//     if(verifyToken.email)
+//         return verifyToken.email === "matei.partac45@gmail.com" 
+//     else
+//         return false;
+// }
+// const LOGIN_URL = "http://localhost:5000/users/login";
+// const secretToken = "secret";
+
+const LOGIN_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/login";
+
 const Account = () => {
     const { token, setUser, handleLogin, handleLogout } = ConnectUser();
     const emailRef: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
@@ -45,9 +72,9 @@ const Account = () => {
               email : email,
               password : password
             })
-            const accessToken = response.data.accessToken;
-
-            return accessToken;
+            // const accessToken = response.data.accessToken;
+            let accessToken = JSON.parse(response.data.body).accesstoken;
+            return accessToken; 
           }
         }catch(error){
             console.log(error);
@@ -55,9 +82,23 @@ const Account = () => {
         }
     }
 
+
+
     async function handleSubmit(event: { preventDefault: () => void; } ) {
         event.preventDefault();
     
+        const validateEmail = (email : string) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
+
+        if(!validateEmail(email)){
+            setErrMsg("Email invalid!");
+            if (errRef.current)
+                errRef.current.focus();
+            return setSuccess(false);
+        }
+
         const accessToken = await verifyCredentials()
     
         if(!accessToken){
@@ -128,9 +169,9 @@ const Account = () => {
                 <Link to="/my-discount">Reduceriile mele</Link>
                 <Link to="/cart">Cosul meu</Link>
                 <Link to="/favorite">Favoritele mele</Link>
-                { token.user !== 'admin' ?
+                {/* {   VerifyAdmin()  ?
                     <Link to="/admin">Admin</Link> : null
-                }
+                } */}
                 <br />
                 <button 
                     className="logout"
