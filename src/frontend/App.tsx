@@ -8,10 +8,12 @@ import Footer from './components/Footer';
 import { PriceOrderContextProvider } from './features/Context/PriceOrderContext';
 import './App.css'
 import { ItemsOrderContextProvider } from './features/Context/ItemsOrderContext';
+import { CookiesProvider } from 'react-cookie';
 
 function App() {
 
   return (
+    <CookiesProvider>
       <Router>
         <ItemProvider>
           <PriceOrderContextProvider>
@@ -24,6 +26,7 @@ function App() {
           </PriceOrderContextProvider>
         </ItemProvider>
       </Router>
+    </CookiesProvider>
   );
 }
 

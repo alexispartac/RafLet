@@ -91,9 +91,9 @@ const Item = () => {
                 <button className="heart-button" onClick={handleFavorite}>
                 {
                     !favoritItem ?
-                    <img className="heart" src="/favicons/heart-empty.png" alt="heart" />
+                    <img className="heart" src="./src/assets/favicons/heart-empty.png" alt="heart" />
                     :
-                    <img className="heart" src="/favicons/heart-full.png" alt="heart" />
+                    <img className="heart" src="./src/assets/favicons/heart-full.png" alt="heart" />
                 }
                 </button>
                 <button className="back-button" onClick={handleItemHome}>
