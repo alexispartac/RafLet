@@ -8,7 +8,8 @@ import { usePriceOrder } from "../features/Context/PriceOrderContext";
 import { useItemsOrder } from "../features/Context/ItemsOrderContext";
 import "./item.css"
 
-
+const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
+const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
 const Item = () => {
     const [describe, setDescribe]: any = React.useState(false);
     const [maintenance, setMaintenance]: any = React.useState(false);
@@ -48,7 +49,6 @@ const Item = () => {
         })
     }, [favoritItem, cartItems])
         
-        
     const handleFavorite = () => {
         if(token.user) {
             alert("Adaugat la favorite!");  
@@ -85,19 +85,20 @@ const Item = () => {
         }
     }
 
+
     return (
         <div className="item" key={item.id}>
-            <img className="image" src={item.img[0]} alt="1" />
+            <img className="image" src={ baseImage+ item.img[0] } alt="1" />
                 <button className="heart-button" onClick={handleFavorite}>
                 {
                     !favoritItem ?
-                    <img className="heart" src="./src/assets/favicons/heart-empty.png" alt="heart" />
+                    <img className="heart" src={baseFavicon + "heart-empty.png"} alt="heart" />
                     :
-                    <img className="heart" src="./src/assets/favicons/heart-full.png" alt="heart" />
+                    <img className="heart" src={baseFavicon + "heart-full.png"} alt="heart" />
                 }
                 </button>
                 <button className="back-button" onClick={handleItemHome}>
-                    <img className="back" src="./src/assets/favicons/back-button.png" alt="heart" />
+                    <img className="back" src={baseFavicon + "back-button.png"} alt="heart" />
                 </button>
                 <div className="details">
                     <h5>{item.title}</h5>
@@ -112,7 +113,7 @@ const Item = () => {
                     <h5> Retur 15 RON</h5>
                     <div onClick={handleDescribe}>
                         <h5> DESCRIERE </h5>
-                        <img className="arrow-down" src="./src/assets/favicons/down-arrow.png" alt="arrow" />
+                        <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                         {
                             describe ?
                             <div className="describe">
@@ -123,7 +124,7 @@ const Item = () => {
                     </div>
                     <div onClick={handleMaintenance}>
                         <h5> COMPOZITIE SI INTRETINERE </h5>
-                        <img className="arrow-down" src="./src/assets/favicons/down-arrow.png" alt="arrow" />
+                        <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                         {
                             maintenance ?
                             <div className="maintenance">
@@ -141,7 +142,7 @@ const Item = () => {
                     </div>
                     <div onClick={handleDelivery}>
                         <h5> LIVRARE SI RETUR </h5>
-                        <img className="arrow-down" src="./src/assets/favicons/down-arrow.png" alt="arrow" />
+                        <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                         {
                             delivery ?
                             <div className="delivery">
