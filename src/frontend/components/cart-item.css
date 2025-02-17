@@ -12,8 +12,9 @@
 }
 
 .cart-item-image-fav{
-    width: 100px;
+    width: 40px;
     height: 100px;
+    object-fit: scale-down;
 }
 
 .cart-item-body-det button{

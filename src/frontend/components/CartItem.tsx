@@ -2,9 +2,10 @@ import React from 'react'
 import { useCartDispatch } from '../features/Context/ItemContext';
 import { ItemType } from '../@types/item';
 import { usePriceOrder } from '../features/Context/PriceOrderContext';
-import "./cart-item.css"
 import { useItemsOrder } from '../features/Context/ItemsOrderContext';
+import "./cart-item.css"
 
+const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
 const CartItem: React.FC<{item: ItemType }> = ({ item })  => {
     const { priceOrder, setPriceOrder }: any = usePriceOrder();
     const { itemsOrder, setItemsOrder }: any = useItemsOrder();
@@ -59,7 +60,7 @@ const CartItem: React.FC<{item: ItemType }> = ({ item })  => {
     
     return (
         <div className="cart-item-body">
-            <img src={`${item.img[0]}`} alt="img" className="cart-item-image-fav"/>
+            <img src={baseImage+ item.img[0] } alt="img" className="cart-item-image-fav"/>
             <div className="cart-item-body-det">
                 <p> {item.title} </p>
                 <p> {item.price} RON</p>

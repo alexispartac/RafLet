@@ -24,7 +24,7 @@ interface OrderInfo {
 }
 
 // const URL_ORDER_INFO = "";
-
+const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const PlacedOrder = () => {
     const [finishOrder, setFinishOrder]: any = React.useState(false);
     const { setItemsOrder }: any = useItemsOrder();
@@ -115,7 +115,7 @@ const PlacedOrder = () => {
     return (
             <div className="order-placed">
                 <button onClick={handleItemHome}>
-                  <img src="../../assets/favicons/back-button.png" alt="back-button" />  
+                  <img className='back-button' src={baseFavicon + "back-button.png"} alt="back-button" />  
                 </button>
                 { !finishOrder ?
                 <div className='order-info'>

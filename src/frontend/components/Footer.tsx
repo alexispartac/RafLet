@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.css"
 
+const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const Footer = () => {
     return (
         <div className="home">
@@ -8,10 +9,10 @@ const Footer = () => {
                 <h4> Urmareste-ne </h4>
                 <div>
                     {/* transforma in link uri cate pagina */}
-                    <img src="./src/assets/favicons/instagram.png" alt="filter" />
-                    <img src="./src/assets/favicons/twitter.png" alt="filter" />
-                    <img src="./src/assets/favicons/youtube.png" alt="filter" />
-                    <img src="./src/assets/favicons/facebook.png" alt="filter" />
+                    <img src={baseFavicon + "instagram.png"} alt="filter" />
+                    <img src={baseFavicon + "twitter.png"} alt="filter" />
+                    <img src={baseFavicon + "youtube.png"} alt="filter" />
+                    <img src={baseFavicon + "facebook.png"} alt="filter" />
                 </div>
             </div>
             <div className="info">

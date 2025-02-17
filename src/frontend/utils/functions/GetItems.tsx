@@ -3,10 +3,6 @@ import { ItemType } from "src/frontend/@types/item";
 const GET_ITEMS_URL = "http://localhost:5000/items/items"
 
 
-
-
-
-
 export const GetItems = async()  => {
 
     const items = [
@@ -14,7 +10,7 @@ export const GetItems = async()  => {
             id: "iubwf-wbfiufnu-fweukfbnk",
             title: "Tricou cu imprimeu custome",
             img: [
-                "./src/assets/images/image1.jpeg"
+                "image1.jpeg"
             ],
             sizes: 
                 {
@@ -35,7 +31,7 @@ export const GetItems = async()  => {
             id: "iubwf-wbfiuf0wefnu-fweukfbnk",
             title: "Tricou cu imprimeu custome",
             img: [
-                "./src/assets/images/image1.jpeg"
+                "image1.jpeg"
             ],
             sizes: 
                 {

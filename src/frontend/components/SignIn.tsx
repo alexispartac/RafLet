@@ -5,8 +5,9 @@ import Home from "./Home";
 import axios from 'axios'
 import './signin.css'
 
-const LOGIN_URL = 'http://localhost:5000/users/login';
-const SIGNIN_URL = 'http://localhost:5000/users/register';
+const LOGIN_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/login";
+const SIGNIN_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/register";
+
 const SignIn = () => {
     const {token, setUser, handleLogin } = ConnectUser();
     const emailRef: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
@@ -43,42 +44,38 @@ const SignIn = () => {
                     withCredentials: true
                 }
             )
-            if(response.status === 200){
-                return true;
-            }
+
+            return response.status;
+
           }catch(error){
-              console.log(error);
               return false;
           }
     }
 
-    async function verifyCredentials(){
+   async function verifyCredentials(){
         try{
-          const response = await axios.post(LOGIN_URL,
-              {
-                  email: email, 
-                  password: password
-              },
-              {
-                  headers: {
-                      'Content-Type': 'application/json; charset=utf-8',
-                      'Accept': 'application/json'
-                  },   
-                  withCredentials: true
-              }
-          )
-          if(response.status === 200){
+            const response = await axios.post(LOGIN_URL,
+                {
+                    email: email, 
+                    password: password
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Accept': 'application/json'
+                    },   
+                    withCredentials: true
+                }
+            )
+            if(response.status === 200){
             setUser({
-              email : email,
-              password : password
+                email : email,
+                password : password
             })
-            console.log(response);
-            const accessToken = response.data.accessToken;
-    
-            return accessToken;
-          }
+            let accessToken = JSON.parse(response.data.body).accesstoken;
+            return accessToken; 
+            }
         }catch(error){
-            console.log(error);
             return false;
         }
     }
@@ -93,18 +90,35 @@ const SignIn = () => {
             return setSuccess(false);
         }
 
+        const validateEmail = (email : string) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
+
+        if(!validateEmail(email)){
+            setErrMsg("Email invalid!");
+            if (errRef.current)
+                errRef.current.focus();
+            return setSuccess(false);
+        }
+
         const register = await Register();
 
-        if(!register){
+        if(register === 409 ){
             setErrMsg("Email deja exista!");
             if (errRef.current)
                 errRef.current.focus();
             return setSuccess(false);
-        }else{
-            setSuccess(true);
-            alert("Cont creat cu succes!");
+        }
+        if(register === 500 ){
+            setErrMsg("Nu s-a putut efectua aceasta actiune, revino mai tarziu!");
+            if (errRef.current)
+                errRef.current.focus();
+            return setSuccess(false);
         }
 
+        setSuccess(true);
+        alert("Cont creat cu succes!");
 
         const accessToken = await verifyCredentials()
     
@@ -115,7 +129,7 @@ const SignIn = () => {
             return setSuccess(false);
         }
         else{
-          handleLogin(accessToken)
+            handleLogin(accessToken)
         }
     
         setEmail('');
@@ -128,7 +142,7 @@ const SignIn = () => {
             !token.user ?
             <div className="account-body">
             <h5 ref={errRef} className={!success ? `error` : `success`}> {errMsg} </h5>
-            <h2 className="title">Sign In</h2>
+            <h2 className="title">Creaza cont</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='username'>
                     Email
