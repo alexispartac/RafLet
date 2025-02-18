@@ -62,7 +62,7 @@
     width: 20px;
     position: relative;
     top: -20px;
-    right: -320px;
+    right: -310px;
 }
 
 .delivery, .describe, .maintenance{
@@ -73,4 +73,39 @@
 
 .delivery p, .maintenance p{
     line-height: 25px;
+}
+
+.main-image {
+    position: relative;
+    display: flex;
+    height: 450px;
+}
+
+.main-image img{
+    width: 100%;
+    height: inherit;
+    object-fit: contain;
+}
+
+.main-image .button-left, .button-right {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 200px;
+    background-color: transparent;
+    border: none;
+    z-index: 5;
+}
+
+.main-image .button-left img, .button-right img{
+
+}
+
+
+.button-left {
+    left: 10px;
+}
+
+.button-right {
+    right: 10px;
 }

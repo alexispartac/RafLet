@@ -3,6 +3,7 @@ import React from 'react';
 import "./navbar.css"
 import SearchBar from './SearchBar';
 
+const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const NavBar = () => {
     const [active, setActive] = React.useState(false);
 
@@ -11,13 +12,13 @@ const NavBar = () => {
             <nav className="continer">
                 <div className="menu-button" >
                     <button onClick={() => setActive(true)}>
-                        <img src="./src/assets/favicons/favicon-menu-off.png" alt="menu-off" />
+                        <img src={baseFavicon + "favicon-menu-off.png"} alt="menu-off" />
                     </button>
                 </div>
                     <div className={`${active ? "nav-menu-back": null}`} onClick={() => setActive(false)}></div>
                     <div className={`navbar-menu ${active ? "active": null}`}>
                         <button className='navbar-menu-button' onClick={() => setActive(false)}>
-                            <img src="./src/assets/favicons/favicon-menu-on.png" alt="menu-on" />
+                            <img src={baseFavicon + "favicon-menu-on.png"} alt="menu-on" />
                         </button>
                         <Link to="/ ">
                             <li className='navbar-item' onClick={() => setActive(false)}>Home</li>
@@ -38,19 +39,19 @@ const NavBar = () => {
                 <div className="user-info">
                     <Link to="/cart">
                         <div className="cart">
-                            <img src="./src/assets/favicons/online-shopping.png" alt="" />
+                            <img src={baseFavicon + "online-shopping.png"} alt="" />
                             <h6>Cos</h6>
                         </div>
                     </Link>
                     <Link to="/favorite">
                         <div className="favorite">
-                            <img src="./src/assets/favicons/heart.png" alt="" />
+                            <img src={baseFavicon + "heart.png"} alt="" />
                             <h6>Favorite</h6>
                         </div>
                     </Link>
                     <Link to="account">
                         <div className="account">
-                            <img src="./src/assets/favicons/user.png" alt="filter" />
+                            <img src={baseFavicon + "user.png"} alt="filter" />
                             <h6>Cont</h6>
                         </div>
                     </Link>

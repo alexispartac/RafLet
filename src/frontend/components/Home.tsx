@@ -8,7 +8,6 @@ import "./home.css"
 const Home = () => {
     const [showOnes, setShowOnes]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = React.useState(false);
 
-
     return (
         <div className="home">
             {/* Filter cand o sa fie mai multe produse */}

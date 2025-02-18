@@ -4,9 +4,10 @@ import { useItems } from "../features/Context/ItemContext";
 import { ItemType } from "../@types/item";
 import ConnectUser from "../utils/hooks/ConnectUser";
 import FavoriteItem from "./FavoriteItem";
-import Footer from "./Footer";
 import "./favorite.css"
 
+
+const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
 const Favorite = () => {
     const { token } = ConnectUser();
     const context = useItems();
@@ -23,7 +24,7 @@ const Favorite = () => {
         <>
             <h1 className="favorite-title">Favorite</h1>
             <div className="favorite-continer">
-                <img src="./src/assets/images/favorite-img.png" alt="" />
+                <img src={ baseImage + "favorite-img.png" } alt="" />
                 <h1>Adauga</h1>
                 <p>Salveaza rapid articolele pentru mai tarziu</p>
                 {
@@ -56,7 +57,6 @@ const Favorite = () => {
         <div>
             {
                 favorite.length ?
-                // schimbare aspect produse la favorite si produse in cos
                     <div className="favorite-body"> 
                         <h3>Favoritele tale</h3>
                         {
@@ -65,7 +65,6 @@ const Favorite = () => {
                             })
                         }
                     </div>
-                
                 :
                 <h1 className="favorite-empty">Nu aveti niciun produs favorit. Intorceti-va la cuparaturi!</h1>
             }

@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const ItemsShow: React.FC<{showOnes: boolean, setShowOnes: React.Dispatch<React.SetStateAction<boolean>>}> = ({showOnes, setShowOnes }) => {
 
   return (
@@ -8,19 +10,19 @@ const ItemsShow: React.FC<{showOnes: boolean, setShowOnes: React.Dispatch<React.
                 showOnes ? 
                 <>
                 <button onClick={() => setShowOnes(false)}>
-                    <img src="./src/assets/favicons/two-items-empty.png" alt="" />
+                    <img src={baseFavicon + "two-items-empty.png"} alt="" />
                 </button>
                 <button >
-                    <img src="./src/assets/favicons/rounded-rectangle-full.png" alt="" />
+                    <img src={baseFavicon + "rounded-rectangle-full.png"} alt="" />
                 </button>
                 </>
                 :
                 <>
                 <button >
-                    <img src="./src/assets/favicons/two-items-full.png" alt="" />
+                    <img src={baseFavicon + "two-items-full.png"} alt="" />
                 </button>
                 <button onClick={() => setShowOnes(true)}>
-                    <img src="./src/assets/favicons/rounded-rectangle.png" alt="" />
+                    <img src={baseFavicon + "rounded-rectangle.png"} alt="" />
                 </button>
                 </>
             }
