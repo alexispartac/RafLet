@@ -1,9 +1,9 @@
-.item-home{
+.item-home {
     display: block;
     position: relative;
 }
 
-.item-home button{
+.item-home button {
     position: absolute;
     top: 0;
     right: 0;
@@ -11,28 +11,32 @@
     border: none;
 }
 
-.item-home button img{
+.item-home button img {
     width: 28px;
     height: 30px;
     z-index: 0;
     position: relative;
     top: 1px;
     padding: 10px;
-} 
+}
 
-.item-home div{
+.item-home div {
     padding: 10px;
 }
 
-.item-home p{
-    font-family:Montserrat, Arial, sans-serif;
+.item-home p {
+    font-family: Montserrat, Arial, sans-serif;
 }
 
-.image, .item-link{
+.image,
+.item-link {
     width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
-.item-home-continer{
+
+.item-home-continer {
     font: 1em sans-serif;
     display: flex;
     flex-direction: column;
@@ -40,6 +44,6 @@
     margin: 0.3rem;
 }
 
-.item-home-continer .price{
+.item-home-continer .price {
     color: red;
 }
