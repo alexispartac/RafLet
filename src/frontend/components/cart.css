@@ -1,18 +1,17 @@
-
-.cart-continer{
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+.cart-continer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 50vh;
     flex-direction: column;
 }
 
-.cart-continer *{
+.cart-continer * {
     color: black;
     text-decoration: none;
 }
 
-.cart-continer button{
+.cart-continer button {
     background-color: rgb(151, 15, 15);
     color: white;
     width: 150px;
@@ -20,7 +19,7 @@
     border-radius: 10px;
 }
 
-.pay{
+.pay {
     display: flex;
     background-color: rgb(151, 15, 15);
     color: white;
@@ -33,23 +32,23 @@
     align-items: center;
 }
 
-.pay h2{
+.pay h2 {
     display: flex;
     margin: auto;
     font-size: 15px;
     text-align: center;
 }
 
-.pay a{
+.pay a {
     color: white;
     text-decoration: none;
 }
 
-.pay:hover{
+.pay:hover {
     background-color: rgb(198, 196, 196);
 }
 
-.cart-continer button:hover:active{
+.cart-continer button:hover:active {
     background-color: white;
     color: rgb(151, 15, 15);
 }
@@ -58,10 +57,10 @@
     margin: 30px 10px;
 }
 
-.cart-empty{
+.cart-empty {
     padding: 50px 40px;
     text-align: center;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 .order-placed {
@@ -83,12 +82,12 @@
     margin-top: 2em;
 }
 
-.order-info-input{
+.order-info-input {
     background-color: #f0f0f0;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   padding: 20px;
-   margin: 20px;
-   border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
 }
 
 .info {
@@ -102,19 +101,23 @@
     padding: 0.4rem;
 }
 
-.order-info input, label, button{
+.order-info input,
+label,
+button {
     font-size: large;
     padding: 0.15rem;
 }
 
-.submit{
+.submit {
     margin: auto;
     align-items: center;
     padding: 5px;
 }
 
-.back-button{
+.back-button {
     position: absolute;
+    width: 30px;
+    height: 30px;
     top: 0;
     left: 0;
     background-color: transparent;
