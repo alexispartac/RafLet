@@ -73,21 +73,25 @@ export const deleteDiscount = (req: any, res: any) => {
 }
 
 
-export const addItem = (req: any, res: any) => {
-    // const  item  = req.body;
+export const addItem = async(req: any, res: any) => {
+    const item  = req.body;
     // adauga in baz de date un item
-    if(VerifyToken(req.headers.accesstoken) )
-        return res.status(401).json({ message: 'Unauthorized!' });
+    // if(VerifyToken(req.headers.accesstoken) )
+    //     return res.status(401).json({ message: 'Unauthorized!' });
 
-    res.send('Item added!');
+    const response = await ITEMS.insertOne(item);
+
+    res.status(200).send(item);
+    return response;
 }
 
-export const deleteItem = (req: any, res: any) => {
-    // const { item } = req.body;
-    if(VerifyToken(req.headers.accesstoken) )
-        return res.status(401).json({ message: 'Unauthorized!' });
+export const deleteItem = async(req: any, res: any) => {
+    const  id  = req.params.id;
+    
+    // if(VerifyToken(req.headers.accesstoken) )
+    //     return res.status(401).json({ message: 'Unauthorized!' });
 
-    // sterge din baz de date un item
-
-    res.send('Item deleted!');
+    const response = await ITEMS.deleteOne({_id: new ObjectId(id)});
+    res.status(200).send(id)
+    return response;
 }
