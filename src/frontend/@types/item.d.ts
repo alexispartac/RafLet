@@ -5,7 +5,15 @@ export interface ItemType {
     img: string[];
     price: number;
     favorite: boolean;
-    cart?: boolean;
+    cart: boolean;
     gender: string;
-    description?: string
+    description: string
+}
+
+export interface ItemTypeOrder {
+    id: string;
+    img: string;
+    name: string;
+    price: number;
+    quantity: number;
 }

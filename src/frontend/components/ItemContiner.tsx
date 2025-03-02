@@ -1,56 +1,51 @@
 import React from "react";
 import { ItemType } from "../@types/item";
 import ConnectUser from "../utils/hooks/ConnectUser";
-import { useItems, useFavoriteDispatch } from "../features/Context/ItemContext";
 import { useNavigate } from "react-router";
-import "./itemhome.css"
-
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavorite, deleteFromFavorite } from "../redux/favoriteSlice";
+import "./ItemContiner.css"
 
 const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
-const ItemHome: React.FC<{ item: ItemType, key: string }> = ({ item, key }) => {
-    const [favoritItem, setFavoritItem] = React.useState(false);
-    const { favorite }: any = useItems();
+
+
+
+const ItemContiner: React.FC<{ item: ItemType }> = ({ item }) => {
+    const favorite = useSelector((state: any) => state.favorite.favorite);
+    const [isFavorit, setIsFavorit] = React.useState(
+        favorite.find((favorit: ItemType) => favorit.id === item.id));
     const { token } = ConnectUser();
 
     const navigate = useNavigate();
     const handleItem = () => {
-        // setTimeout( () => {
-        // }, 100)
         navigate(`/item/${item.title + "&&" + item.id}`, { state: { item: item } });
     }
 
-    React.useEffect(() => {
-        favorite.forEach((favoritItem: ItemType) => {
-            if (favoritItem.id === item.id) {
-                setFavoritItem(true);
-            }
-        })
-    }, [favorite])
+    const dispatchFavorite = useDispatch();
 
-    const dispatchFavorite: any = useFavoriteDispatch();
     const handleFavorite = () => {
         if (token.user) {
-            if (!favoritItem) {
+            if (!isFavorit) {
                 alert("Adaugat la favorite!");
-                setFavoritItem(true);
-                dispatchFavorite({ type: 'add', favorit: item });
+                dispatchFavorite(addToFavorite(item));
+                setIsFavorit(true);
             } else {
                 alert("Sters de la favorite!");
-                setFavoritItem(false);
-                dispatchFavorite({ type: 'delete', id: item.id });
+                dispatchFavorite(deleteFromFavorite(item));
+                setIsFavorit(false);
             }
         } else {
             alert("Trebuie sa fiti autentificat pentru a adauga la favorite!");
         }
     }
     return (
-        <div key={key}>
+        <div>
             <div className="item-home" >
-                <img className="image" onClick={handleItem} src={baseImage + item.img[0]} alt="1" />
+                <img className="image" onClick={handleItem} src={baseImage + item.img[1]} alt="1" />
                 <button onClick={handleFavorite}>
                     {
-                        !favoritItem ?
+                        !isFavorit ?
                             <img src={baseFavicon + "heart-empty.png"} alt="heart" />
                             :
                             <img src={baseFavicon + "heart-full.png"} alt="heart" />
@@ -66,4 +61,4 @@ const ItemHome: React.FC<{ item: ItemType, key: string }> = ({ item, key }) => {
 }
 
 
-export default ItemHome;
+export default ItemContiner;

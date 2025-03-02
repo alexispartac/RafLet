@@ -29,6 +29,7 @@ export interface IRes {
                 error?: unknoun; 
                 items?: ItemType[] | unknown;
                 item?: ItemType | unknown;
+                data?: any
             }): unknown; 
             new(): unknown; 
         }; 

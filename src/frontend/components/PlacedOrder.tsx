@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom'
 import emailjs from '@emailjs/browser';
-import { useItemsOrder } from '../features/Context/ItemsOrderContext'
-import { ItemType } from '../@types/item'
-import { usePriceOrder } from '../features/Context/PriceOrderContext'
-import { useCartDispatch, useItems } from '../features/Context/ItemContext'
+import { deleteCart } from '../redux/cartSlice';
+import { ItemTypeOrder } from '../@types/item';
 import './cart.css'
-
 interface OrderInfo {
     name: string,
     email: string,
@@ -26,16 +24,12 @@ interface OrderInfo {
 // const URL_ORDER_INFO = "";
 const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const PlacedOrder = () => {
-    const [finishOrder, setFinishOrder]: any = React.useState(false);
-    const { setItemsOrder }: any = useItemsOrder();
-    const location = useLocation();
+    const cartItems = useSelector((state: any) => state.cart.cart);
+    const [finishOrder, setFinishOrder]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = React.useState(false);
+    let totalPrice = 0;
+    cartItems.forEach((cartItem: ItemTypeOrder) => totalPrice = totalPrice + (cartItem.price * cartItem.quantity))
+    const orderItems = cartItems.map((item: ItemTypeOrder) => `Produs: ${item.name}, Pret: ${item.price} Ron, Cantitatea: ${item.quantity}`).join('\n')
 
-    const dispatchCart: any = useCartDispatch();
-    const { setPriceOrder }: any = usePriceOrder();
-    const { cartItems }: any = useItems();
-
-    const itemsOrder = location.state.orderItems;
-    const priceOrder = location.state.priceOrder;
     const [orderInfo, setOrderInfo]: any = React.useState<OrderInfo>({
         name: "",
         email: "",
@@ -47,8 +41,8 @@ const PlacedOrder = () => {
         scara: "",
         apartament: "",
         phone: "",
-        items: itemsOrder.map((item: any) => `Produs: ${item.name}, Cantitate: ${item.quantity}, Pret: ${item.price} Ron`).join('\n'),
-        total: priceOrder,
+        items: orderItems,
+        total: totalPrice,
     });
 
     useEffect(() => {
@@ -74,24 +68,19 @@ const PlacedOrder = () => {
             });
     }
 
+    const dispatchCart = useDispatch();
+
     const handleOrderFinish = () => {
         SendEmail();
-        cartItems.forEach((item: ItemType) => {
-            dispatchCart({ type: "delete", id: item.id });
-        });
-        setTimeout(() => {
-            setPriceOrder(0);
-        }, 100)
+        dispatchCart(deleteCart());
     }
 
     const submitOrderInfo = async (e: any) => {
         e.preventDefault();
 
         if (orderInfo.name && orderInfo.email && orderInfo.judet && orderInfo.oras && orderInfo.strada && orderInfo.numar && orderInfo.phone) {
-
             setFinishOrder(true);
             handleOrderFinish();
-            setItemsOrder([]);
         }
         //cerere catre backend de a sterge din stoc
         // const response = await axios.post(URL_ORDER_INFO, 
@@ -113,13 +102,23 @@ const PlacedOrder = () => {
 
     return (
         <div className="order-placed">
-            <button onClick={handleItemHome}>
+            <div onClick={handleItemHome}>
                 <img className='back-button' src={baseFavicon + "back-button.png"} alt="back-button" />
-            </button>
+            </div>
             {!finishOrder ?
                 <div className='order-info'>
                     <h2>Detalii comanda</h2>
                     <br />
+                    <div>
+                        {
+                            cartItems.map((cartItem: ItemTypeOrder) =>
+                                <p>{cartItem.name}: {cartItem.quantity} - {cartItem.price * cartItem.quantity} RON</p>
+                            )
+                        }
+                    </div>
+                    <h4>
+                        Total: {totalPrice} RON
+                    </h4>
                     <div className='order-info-input'>
                         <form onSubmit={submitOrderInfo}>
                             <label htmlFor="name">*Nume:</label>

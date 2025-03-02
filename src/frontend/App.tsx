@@ -1,31 +1,31 @@
 import React from 'react'
-import { BrowserRouter as Router} from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import PageRoutes  from './router'
-import { ItemProvider }  from './features/Context/ItemContext';
+import PageRoutes from './router'
 import Footer from './components/Footer';
-import { PriceOrderContextProvider } from './features/Context/PriceOrderContext';
-import { ItemsOrderContextProvider } from './features/Context/ItemsOrderContext';
 import { CookiesProvider } from 'react-cookie';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import './App.css'
+
+const queryClient = new QueryClient();
 
 function App() {
 
   return (
     <CookiesProvider>
-      <Router>
-        <ItemProvider>
-          <PriceOrderContextProvider>
-            <ItemsOrderContextProvider>
-              <NavBar />
-              <PageRoutes />
-              <Footer />
-            </ItemsOrderContextProvider>
-          </PriceOrderContextProvider>
-        </ItemProvider>
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Router>
+            <NavBar />
+            <PageRoutes />
+            <Footer />
+          </Router>
+        </Provider>
+      </QueryClientProvider>
     </CookiesProvider>
   );
 }
 
-export default App
+export default App;

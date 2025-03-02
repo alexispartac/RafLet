@@ -1,87 +1,26 @@
-import React from 'react'   
-import { useCartDispatch } from '../features/Context/ItemContext';
-import { ItemType } from '../@types/item';
-import { usePriceOrder } from '../features/Context/PriceOrderContext';
-import { useItemsOrder } from '../features/Context/ItemsOrderContext';
+import React, { useState } from 'react'
+import { ItemTypeOrder } from '../@types/item';
 import "./cart-item.css"
+import { useDispatch } from 'react-redux';
+import { addToCart, deleteFromCart } from '../redux/cartSlice';
 
 const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
-const CartItem: React.FC<{item: ItemType }> = ({ item })  => {
-    const { priceOrder, setPriceOrder }: any = usePriceOrder();
-    const { itemsOrder, setItemsOrder }: any = useItemsOrder();
-    const dispatchCart: any= useCartDispatch();
-    
-    const foundItem = itemsOrder.find((itemOrder: any) => itemOrder.id === item.id);
-    const quantity = foundItem?.quantity;
-    const [count, setCount]: any = React.useState(quantity);
-
-
-    console.log(itemsOrder);
-
-    const addToTotalPriceOrder = () => {
-        setPriceOrder(priceOrder + item.price);
-    }
-    const removeFromTotalPriceOrder = () => {
-        setPriceOrder(priceOrder - item.price);
-    }
-
-    const addToTotalItemsOrder = () => {
-        setItemsOrder(
-            itemsOrder.map( (itemOrder: any) => {
-                if(itemOrder.id === item.id)
-                    return {...itemOrder, quantity: itemOrder.quantity + 1}
-                else
-                    return itemOrder
-            })
-        )
-    }
-     
-    const removeFromTotalItemsOrder = () =>{
-        if(count === 1){
-            setItemsOrder(
-                itemsOrder.map( (itemOrder: any) => 
-                    itemOrder.id === item.id ?  null : itemOrder
-                )
-                .filter( (item: any) => item !== null)
-            )
-        }else{
-            setItemsOrder(
-                itemsOrder.map( (itemOrder: any) => {
-                    if(itemOrder.id === item.id){
-                        return {...itemOrder, quantity: itemOrder.quantity - 1}
-                    }
-                    else{
-                        return itemOrder
-                    }
-                })
-            )
-        }
-    }
-    
+const CartItem: React.FC<{ item: ItemTypeOrder }> = ({ item }) => {
+    const dispatchCart = useDispatch();
+    const [count, setCount]: [number, React.Dispatch<React.SetStateAction<number>>] = useState(item.quantity);
     return (
         <div className="cart-item-body">
-            <img src={baseImage+ item.img[0] } alt="img" className="cart-item-image-fav"/>
+            <img src={baseImage + item.img[0]} alt="img" className="cart-item-image-fav" />
             <div className="cart-item-body-det">
-                <p> {item.title} </p>
-                <p> {item.price} RON</p>
+                <p> {item.name} </p>
+                <p> {item.price * count} RON</p>
                 <div className='count'>
-                    <button onClick={() =>  {
-                        removeFromTotalPriceOrder();
-                        removeFromTotalItemsOrder();
-                        return count > 1 ? setCount(count - 1): dispatchCart({id: item.id, type: "delete"})
-                    }
-                }>-</button>
+                    <button onClick={() => { dispatchCart(deleteFromCart(item)); setCount(count - 1) }}>-</button>
                     <p>{count}</p>
-                    <button onClick={() => 
-                    {
-                        addToTotalPriceOrder();
-                        addToTotalItemsOrder();
-                        return setCount(count + 1);
-                    }
-                    }>+</button>
+                    <button onClick={() => { dispatchCart(addToCart(item)); setCount(count + 1) }}>+</button>
                 </div>
             </div>
-            
+
         </div>
     );
 

@@ -1,24 +1,25 @@
 import express from "express";
-import { uploadImage, addDiscount, addItem, getItems, deleteItem } from '../api/item.ts';
+import { uploadImage, addDiscount, addItem, getItems, deleteItem, getItem, getNumberOfItems } from '../api/item.ts';
+
 
 const router = express.Router();
 
 router.get("/items", getItems);
 
-// adauga imagine
-router.post("/upload", uploadImage);
+router.get('/item/:id', getItem);
 
-// adauga discount
-router.post("/addDiscount", addDiscount);
+router.get('/items/number', getNumberOfItems);
 
-// adauga item
-router.post("/addItem", addItem);
 
-// adauga item
+//for admin
 router.post("/add", addItem);
 
-// sterge item
-router.delete("/delete/:id", deleteItem)
+router.delete("/delete/:id", deleteItem);
+
+router.post("/upload", uploadImage);
+
+router.post("/addDiscount", addDiscount);
+
 
 
 export default router;

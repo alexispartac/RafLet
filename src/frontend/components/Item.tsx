@@ -1,13 +1,12 @@
 import * as React from "react";
-import { ItemType } from "../@types/item";
-import Footer from "./Footer";
 import ConnectUser from "../utils/hooks/ConnectUser";
-import { useCartDispatch, useFavoriteDispatch, useItems } from "../features/Context/ItemContext";
+import { ItemType, ItemTypeOrder } from "../@types/item";
 import { useLocation, useNavigate } from "react-router";
-import { usePriceOrder } from "../features/Context/PriceOrderContext";
-import { useItemsOrder } from "../features/Context/ItemsOrderContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
+import { addToFavorite, deleteFromFavorite } from "../redux/favoriteSlice";
+import Footer from "./Footer";
 import "./item.css"
-
 
 interface SlideImageProps {
     images: string[];
@@ -19,7 +18,7 @@ const SlideImage: React.FC<SlideImageProps> = ({ images }) => {
     const handleClickRight = () => {
         const currentIndex = images.indexOf(currentImage);
         const nextIndex = (currentIndex + 1 + images.length) % images.length;
-         setCurrentImage(images[nextIndex]);
+        setCurrentImage(images[nextIndex]);
     }
 
     const handleClickLeft = () => {
@@ -33,9 +32,9 @@ const SlideImage: React.FC<SlideImageProps> = ({ images }) => {
             <button className="button-left" onClick={handleClickLeft}>
                 <img src={baseFavicon + "icons8-back-50.png"} alt="left" />
             </button>
-                <img src={baseImage + currentImage} alt="Main" />
+            <img src={baseImage + currentImage} alt="Main" />
             <button className="button-right" onClick={handleClickRight}>
-            <img src={baseFavicon + "icons8-forward-50.png"} alt="right" />
+                <img src={baseFavicon + "icons8-forward-50.png"} alt="right" />
             </button>
         </div>
     );
@@ -46,23 +45,21 @@ const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
 
 const Item = () => {
+    const location = useLocation()
+    const item: ItemType = location.state.item;
     const [describe, setDescribe]: any = React.useState(false);
     const [maintenance, setMaintenance]: any = React.useState(false);
     const [delivery, setDelivery]: any = React.useState(false);
     const [inCart, setInCart]: any = React.useState(false);
-    const [favoritItem, setFavoritItem]: any = React.useState(false);
 
-    const { priceOrder, setPriceOrder }: any = usePriceOrder();
-    const { itemsOrder, setItemsOrder }: any = useItemsOrder();
+    const favorite = useSelector((state: any) => state.favorite.favorite);
+    const [isFavorit, setIsFavorit] = React.useState(favorite.find((favorit: ItemType) => favorit.id === item.id));
 
     const { token } = ConnectUser();
-    const dispatchCart: any = useCartDispatch()
-    const dispatchFavorite: any = useFavoriteDispatch();
 
-    const { favorite, cartItems } : any = useItems();
-    
-    const location = useLocation()
-    const item : ItemType = location.state.item;
+    const cartItems = useSelector((state: any) => state.cart.cart)
+    const dispatchCart = useDispatch();
+    const dispatchFavorite = useDispatch();
 
     const navigate = useNavigate();
     const handleItemHome = () => {
@@ -70,32 +67,30 @@ const Item = () => {
     }
 
     React.useEffect(() => {
-        favorite.forEach( (favoritItem: ItemType) => { 
-            if(favoritItem.id === item.id)
-                {
-                    setFavoritItem(true);
-                }
+        favorite.forEach((isFavorit: ItemType) => {
+            if (isFavorit.id === item.id) {
+                setIsFavorit(true);
+            }
         });
-        cartItems.forEach( (cartItem: ItemType) => {
-            if(cartItem.id === item.id)
-                {
-                    setInCart(true);
-                }
+        cartItems.forEach((cartItem: ItemTypeOrder) => {
+            if (cartItem.id === item.id) {
+                setInCart(true);
+            }
         })
-    }, [favoritItem, cartItems])
-        
+    }, [isFavorit, cartItems])
+
     const handleFavorite = () => {
-        if(token.user) {
-            alert("Adaugat la favorite!");  
-            if(!favoritItem)
-                {
-                    setFavoritItem(true);    
-                    dispatchFavorite({ type: 'add', favorit: item });
-                }else{
-                    setFavoritItem(false);
-                    dispatchFavorite({ type: 'delete', id: item.id });
-                }   
-        }else{
+        if (token.user) {
+            if (!isFavorit) {
+                alert("Adaugat la favorite!");
+                dispatchFavorite(addToFavorite(item))
+                setIsFavorit(true);
+            } else {
+                alert("Sters de la favorite!");
+                dispatchFavorite(deleteFromFavorite(item))
+                setIsFavorit(false);
+            }
+        } else {
             alert("Trebuie sa fiti autentificat pentru a adauga la favorite!");
         }
     }
@@ -108,18 +103,17 @@ const Item = () => {
     const handleDelivery = () => {
         setDelivery(!delivery);
     }
+
+
     const handleCart = () => {
-        if(token.user) {
+        if (token.user) {
             alert("Adaugat in cos!");
-            dispatchCart({ type: 'add' , cartItem: item});
-            setPriceOrder(priceOrder + item.price);
-            setItemsOrder([...itemsOrder, { id: item.id, name: item.title, price: item.price, quantity: 1 }]);
+            dispatchCart(addToCart({ id: item.id, name: item.title, img: item.img[0], price: item.price, quantity: 1 }));
             setInCart(true);
-        }else{
+        } else {
             alert("Trebuie sa fiti autentificat pentru a adauga produsele dumneavoastra in cos!");
         }
     }
-
 
     return (
         <div className="item" key={item.id}>
@@ -127,10 +121,10 @@ const Item = () => {
             <SlideImage images={item.img} />
             <button className="heart-button" onClick={handleFavorite}>
                 {
-                    !favoritItem ?
-                    <img className="heart" src={baseFavicon + "heart-empty.png"} alt="heart" />
-                    :
-                    <img className="heart" src={baseFavicon + "heart-full.png"} alt="heart" />
+                    !isFavorit ?
+                        <img className="heart" src={baseFavicon + "heart-empty.png"} alt="heart" />
+                        :
+                        <img className="heart" src={baseFavicon + "heart-full.png"} alt="heart" />
                 }
             </button>
             <button className="back-button" onClick={handleItemHome}>
@@ -149,10 +143,10 @@ const Item = () => {
                     <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                     {
                         describe ?
-                        <div className="describe">
-                            <p>{item.description}</p>
-                        </div>
-                        : null
+                            <div className="describe">
+                                <p>{item.description}</p>
+                            </div>
+                            : null
                     }
                 </div>
                 <div onClick={handleMaintenance}>
@@ -160,17 +154,17 @@ const Item = () => {
                     <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                     {
                         maintenance ?
-                        <div className="maintenance">
-                            <p>
-                            Material: 60% BUMBAC, 40% POLIESTER washing
-                            SPĂLĂLAŢI LA MAŞINĂ DE SPĂLAT, MAX. TEMP.30 ° C bleaching
-                            NU FOLOSIŢI ÎNĂLBITOR drying
-                            NU USCAŢI PRIN CENTRIFUGARE ironing
-                            CĂLCAŢI LA TEMP.MAX. 110 ° C - FĂRĂ ABUR preservation
-                            NU SE CURĂŢA CHIMIC
-                            </p>
-                        </div>
-                        : null
+                            <div className="maintenance">
+                                <p>
+                                    Material: 60% BUMBAC, 40% POLIESTER washing
+                                    SPĂLĂLAŢI LA MAŞINĂ DE SPĂLAT, MAX. TEMP.30 ° C bleaching
+                                    NU FOLOSIŢI ÎNĂLBITOR drying
+                                    NU USCAŢI PRIN CENTRIFUGARE ironing
+                                    CĂLCAŢI LA TEMP.MAX. 110 ° C - FĂRĂ ABUR preservation
+                                    NU SE CURĂŢA CHIMIC
+                                </p>
+                            </div>
+                            : null
                     }
                 </div>
                 <div onClick={handleDelivery}>
@@ -178,9 +172,9 @@ const Item = () => {
                     <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                     {
                         delivery ?
-                        <div className="delivery">
-                            <p>
-                            Politica de expediere <br />
+                            <div className="delivery">
+                                <p>
+                                    Politica de expediere <br />
                                     Ridicare din magazin <br />
                                     GRATUITĂ <br />
                                     3-6 zile lucrătoare <br />
@@ -205,14 +199,14 @@ const Item = () => {
                                     18,99 RON* <br />
                                     3-6 zile lucrătoare <br />
                                     * - Livrare gratuită de la 159 RON <br />
-                            </p>
-                        </div>
-                        : null
+                                </p>
+                            </div>
+                            : null
                     }
                 </div>
             </div>
             <Footer />
-        </div>    
+        </div>
     );
 }
 

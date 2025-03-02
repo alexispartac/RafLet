@@ -114,12 +114,13 @@ button {
     padding: 5px;
 }
 
-.back-button {
+.order-placed .back-button {
     position: absolute;
     width: 30px;
     height: 30px;
     top: 0;
     left: 0;
+    padding: 20px;
     background-color: transparent;
     border: none;
 }

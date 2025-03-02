@@ -1,6 +1,6 @@
 import path from 'path';
-import { MongoClient, ObjectId } from 'mongodb';
 import jwt from 'jsonwebtoken';
+import { MongoClient, ObjectId } from 'mongodb';
 import { secretToken } from '../constants.ts';
 import { IReq, IRes } from '../@types/server.js';
 import { ItemType } from 'src/frontend/@types/item';
@@ -20,8 +20,7 @@ const VerifyToken = ( accessToken: string | undefined) => {
     return decoded;
 }
 
-
-export const getItems = async(req: IReq, res: IRes): Promise<unknown> => {
+export const getItems = async(_req: IReq, res: IRes): Promise<unknown> => {
     try{
         const items = await ITEMS.find().toArray();
 
@@ -32,6 +31,49 @@ export const getItems = async(req: IReq, res: IRes): Promise<unknown> => {
 
 }
 
+export const getNumberOfItems = async(_req: IReq, res: IRes) : Promise<unknown> => {
+    try {
+        const numberOfItems = (await ITEMS.find().toArray()).length;
+        return res.status(200).json({message: 'Success!', data: numberOfItems})
+    } catch (error) {
+        return res.status(500).json({error: error})
+    }
+}
+
+export const getItem = async (req: IReq, res: IRes): Promise<unknown> => {
+    const id = req.query.itemId;
+
+    try{
+        const item = ITEMS.findOne({id : id});
+        return res.status(200).json({message: 'Success!', item: item});
+    }catch(e){
+        return res.status(400).json({error: e});
+    }
+
+}
+
+export const addItem = async(req: any, res: any) => {
+    const item  = req.body;
+    // adauga in baz de date un item
+    // if(VerifyToken(req.headers.accesstoken) )
+    //     return res.status(401).json({ message: 'Unauthorized!' });
+
+    const response = await ITEMS.insertOne(item);
+
+    res.status(200).send(item);
+    return response;
+}
+
+export const deleteItem = async(req: any, res: any) => {
+    const  id  = req.params.id;
+    
+    // if(VerifyToken(req.headers.accesstoken) )
+    //     return res.status(401).json({ message: 'Unauthorized!' });
+
+    const response = await ITEMS.deleteOne({_id: new ObjectId(id)});
+    res.status(200).send(id)
+    return response;
+}
 
 export const uploadImage = (req: IReq, res: any) => {
 
@@ -70,28 +112,4 @@ export const deleteDiscount = (req: any, res: any) => {
     // sterge discount la toate produsele din baza de date
 
     res.send('Discount deleted!');
-}
-
-
-export const addItem = async(req: any, res: any) => {
-    const item  = req.body;
-    // adauga in baz de date un item
-    // if(VerifyToken(req.headers.accesstoken) )
-    //     return res.status(401).json({ message: 'Unauthorized!' });
-
-    const response = await ITEMS.insertOne(item);
-
-    res.status(200).send(item);
-    return response;
-}
-
-export const deleteItem = async(req: any, res: any) => {
-    const  id  = req.params.id;
-    
-    // if(VerifyToken(req.headers.accesstoken) )
-    //     return res.status(401).json({ message: 'Unauthorized!' });
-
-    const response = await ITEMS.deleteOne({_id: new ObjectId(id)});
-    res.status(200).send(id)
-    return response;
 }
