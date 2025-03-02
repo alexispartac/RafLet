@@ -15,7 +15,8 @@ export interface IReq {
         item: ItemType
     }
     query: {
-        itemId: string;
+        itemId?: string;
+        category?: string
     };
 }
 

@@ -16,4 +16,5 @@ export interface Item {
     favorite?: boolean;
     description?: string;
     gender: string;
+    category: string;
 }

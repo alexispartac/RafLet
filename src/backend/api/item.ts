@@ -20,10 +20,14 @@ const VerifyToken = ( accessToken: string | undefined) => {
     return decoded;
 }
 
-export const getItems = async(_req: IReq, res: IRes): Promise<unknown> => {
+export const getItems = async(req: IReq, res: IRes): Promise<unknown> => {
+    const category = req.query.category;
+    let items;
     try{
-        const items = await ITEMS.find().toArray();
-
+        if(category == 'all')
+            items = await ITEMS.find().toArray();
+        else
+            items = await ITEMS.find({category: category}).toArray();
         return res.status(200).json({message: 'Items!', items: items});
     }catch(error: unknown){
         return res.status(400).json({error: 'Produsele nu s au putut incarca!'});
