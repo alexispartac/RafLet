@@ -17,6 +17,7 @@ const CartItem: React.FC<{ item: ItemTypeOrder }> = ({ item }) => {
                 <div className='count'>
                     <button onClick={() => { dispatchCart(deleteFromCart(item)); setCount(count - 1) }}>-</button>
                     <p>{count}</p>
+                    
                     <button onClick={() => { dispatchCart(addToCart(item)); setCount(count + 1) }}>+</button>
                 </div>
             </div>

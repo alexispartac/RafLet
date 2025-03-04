@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-/* @import "tailwindcss"; */
+@import "tailwindcss";
 
 :root {
     --general-color: rgb(169, 169, 169);
@@ -10,7 +10,6 @@
 
 * {
     margin: 0;
-    padding: 0;
     box-sizing: 0;
     font-family: var(--font-text);
 }

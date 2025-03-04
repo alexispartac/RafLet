@@ -2,16 +2,16 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; 
-    height: 100vh; 
+    width: 100vw;
+    height: 100vh;
     overflow: scroll;
-    background-color: #f0f0f0; 
+    background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
     z-index: 2;
 }
 
-.heart-button{
+.heart-button {
     position: absolute;
     top: 0;
     right: 0;
@@ -19,7 +19,7 @@
     border: none;
 }
 
-.back-button{
+.back-button {
     position: absolute;
     top: 0;
     left: 0;
@@ -27,7 +27,8 @@
     border: none;
 }
 
-.heart, .back{
+.heart,
+.back {
     width: 30px;
     z-index: 0;
     position: relative;
@@ -35,7 +36,7 @@
     padding: 20px;
 }
 
-.item .details{
+.item .details {
     display: flex;
     flex-direction: column;
     padding: 30px 30px;
@@ -43,35 +44,38 @@
     border-bottom: 1px solid #555;
 }
 
-.item .details h5{
-    font-size: 1.1em ;
+.item .details h5 {
+    font-size: 1.1em;
 }
 
-.item .details button{
+.item .details {
     padding: 10px 20px;
     margin: 15px 0;
     border-radius: 20px;
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.262);
 }
 
-.item .details button:active:hover{
+.item .details button:active:hover {
     background-color: rgba(173, 172, 172, 0.751);
 }
 
-.item .details .arrow-down{
+.item .details .arrow-down {
     width: 20px;
     position: relative;
     top: -20px;
     right: -310px;
 }
 
-.delivery, .describe, .maintenance{
+.delivery,
+.describe,
+.maintenance {
     width: 100%;
     padding: 10px 10px;
     background-color: transparent;
 }
 
-.delivery p, .maintenance p{
+.delivery p,
+.maintenance p {
     line-height: 25px;
 }
 
@@ -81,13 +85,14 @@
     height: 450px;
 }
 
-.main-image img{
+.main-image img {
     width: 100%;
     height: inherit;
     object-fit: contain;
 }
 
-.main-image .button-left, .button-right {
+.main-image .button-left,
+.button-right {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -97,9 +102,8 @@
     z-index: 5;
 }
 
-.main-image .button-left img, .button-right img{
-
-}
+.main-image .button-left img,
+.button-right img {}
 
 
 .button-left {

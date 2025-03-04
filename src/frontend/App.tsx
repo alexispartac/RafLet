@@ -19,8 +19,8 @@ function App() {
         <Provider store={store}>
           <Router>
             <NavBar />
-            <PageRoutes />
-            <Footer />
+            {/* <PageRoutes />
+            <Footer /> */}
           </Router>
         </Provider>
       </QueryClientProvider>

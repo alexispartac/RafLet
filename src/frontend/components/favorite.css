@@ -1,10 +1,10 @@
-
-.favorite-title{
+.favorite-title {
     margin: 20px 20px;
     border-bottom: 1px solid #797979;
 }
 
-.favorite-continer, .favorite-to-home{
+.favorite-continer,
+.favorite-to-home {
     display: flex;
     flex-direction: column;
     padding: 40px 50px;
@@ -14,18 +14,18 @@
     border-bottom: 1px solid #797979;
 }
 
-.favorite-continer img{
+.favorite-continer img {
     width: 200px;
     height: 200px;
 }
 
-.space{
+.space {
     width: 100%;
     height: 30px;
-    background-color: rgb(232, 232, 233);;
+    background-color: rgb(232, 232, 233);
 }
 
-.favorite-continer .login-button{
+.favorite-continer .login-button {
     background-color: var(--red-color);
     color: white;
     width: 150px;
@@ -33,27 +33,27 @@
     border-radius: 10px;
 }
 
-.favorite-continer .login-button:hover:active{
+.favorite-continer .login-button:hover:active {
     background-color: white;
     color: rgb(151, 15, 15);
 }
 
-.favorite-to-home a{
+.favorite-to-home a {
     text-decoration: none;
     color: black;
     cursor: pointer;
 }
 
-.favorite-empty{
+.favorite-empty {
     padding: 50px 40px;
     text-align: center;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 .favorite-body {
     margin: 30px 10px;
 }
 
-.body{
+.body {
     gap: 10px;
 }

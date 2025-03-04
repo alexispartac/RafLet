@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 import { ItemType } from "../@types/item";
 import ConnectUser from "../utils/hooks/ConnectUser";
 import FavoriteItem from "./FavoriteItem";
-import "./favorite.css"
 import { useSelector } from "react-redux";
+import "./favorite.css"
 
 
 const baseImage = "https://images-product-rafa.s3.amazonaws.com/";

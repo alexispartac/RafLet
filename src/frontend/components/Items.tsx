@@ -18,7 +18,7 @@ const FatchItems = async (category = '' as string): Promise<ItemType[]> =>
 const Items = () => {
     const [showOnes, setShowOnes]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = React.useState(false);
     const [category, setCategory]: [string, React.Dispatch<React.SetStateAction<string>>] = React.useState("all");
-    try {
+    try {                                   
         const { data: items, isLoading, error } = useQuery({
             queryKey: ['items', category],
             queryFn: () => FatchItems(category),

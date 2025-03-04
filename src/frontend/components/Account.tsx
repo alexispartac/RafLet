@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 // import jwt from "jsonwebtoken"
 import axios from 'axios'
 import "./account.css"
+import { Button } from "./elements/Button";
 
 
 // const VerifyAdmin = () : boolean =>{
@@ -173,11 +174,9 @@ const Account = () => {
                             {/* {   VerifyAdmin()  ?
                     <Link to="/admin">Admin</Link> : null
                 } */}
+
                             <br />
-                            <button
-                                className="logout"
-                                onClick={handleLogout}> Iesi din cont
-                            </button>
+                            <Button color="red" onClick={handleLogout}> Iesi din cont </Button>
                         </div>
                     </div>
             }

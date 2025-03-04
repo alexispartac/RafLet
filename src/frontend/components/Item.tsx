@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { addToFavorite, deleteFromFavorite } from "../redux/favoriteSlice";
 import Footer from "./Footer";
+import { Button } from "./elements/Button";
 import "./item.css"
 
 interface SlideImageProps {
@@ -50,7 +51,7 @@ const Item = () => {
     const [describe, setDescribe]: any = React.useState(false);
     const [maintenance, setMaintenance]: any = React.useState(false);
     const [delivery, setDelivery]: any = React.useState(false);
-    const [inCart, setInCart]: any = React.useState(false);
+    const [inCart, setInCart]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = React.useState(false);
 
     const favorite = useSelector((state: any) => state.favorite.favorite);
     const [isFavorit, setIsFavorit] = React.useState(favorite.find((favorit: ItemType) => favorit.id === item.id));
@@ -131,11 +132,11 @@ const Item = () => {
                 <img className="back" src={baseFavicon + "back-button.png"} alt="heart" />
             </button>
             <div className="details">
-                <h5>{item.title}</h5>
+                <h5 >{item.title}</h5>
                 <h3>{item.price} RON</h3>
-                <button disabled={inCart} onClick={handleCart}>
-                    <h2>Adauga - {item.price} RON</h2>
-                </button>
+                <Button disabled={inCart} onClick={handleCart} color="green">
+                    Adauga - {item.price} RON
+                </Button>
                 <h5> Livrare gratuita peste 200 RON</h5>
                 <h5> Retur 15 RON</h5>
                 <div onClick={handleDescribe}>
