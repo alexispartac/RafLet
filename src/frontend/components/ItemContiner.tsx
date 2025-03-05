@@ -4,7 +4,7 @@ import ConnectUser from "../utils/hooks/ConnectUser";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorite, deleteFromFavorite } from "../redux/favoriteSlice";
-import "./ItemContiner.css"
+
 
 const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
@@ -41,19 +41,19 @@ const ItemContiner: React.FC<{ item: ItemType }> = ({ item }) => {
     }
     return (
         <div>
-            <div className="item-home" >
-                <img className="image" onClick={handleItem} src={baseImage + item.img[1]} alt="1" />
-                <button onClick={handleFavorite}>
+            <div className="block relative px-[0.5rem]" >
+                <img className="w-full object-contain" onClick={handleItem} src={baseImage + item.img[1]} alt="1" />
+                <button className="absolute top-2 right-3 bg-transparent border-none" onClick={handleFavorite}>
                     {
                         !isFavorit ?
-                            <img src={baseFavicon + "heart-empty.png"} alt="heart" />
+                            <img className="relative w-[28px] h-[30px] z-0 top-[1px]" src={baseFavicon + "heart-empty.png"} alt="heart" />
                             :
-                            <img src={baseFavicon + "heart-full.png"} alt="heart" />
+                            <img className="relative w-[28px] h-[30px] z-0 top-[1px]" src={baseFavicon + "heart-full.png"} alt="heart" />
                     }
                 </button>
-                <div className="item-home-continer">
+                <div className="flex flex-col gap-2.5 p-[0.3rem] text-[1em] font-sans ">
                     <p>{item.title}</p>
-                    <p className="price">{item.price} RON</p>
+                    <p className="text-red-500">{item.price} RON</p>
                 </div>
             </div>
         </div>

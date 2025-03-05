@@ -19,7 +19,7 @@ function App() {
         <Provider store={store}>
           <Router>
             <NavBar />
-            {/* <PageRoutes /> */}
+            <PageRoutes />
             <Footer />
           </Router>
         </Provider>

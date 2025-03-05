@@ -5,7 +5,7 @@ import ConnectUser from "../utils/hooks/ConnectUser";
 import CartItem from "./CartItem.tsx";
 import Footer from "./Footer.tsx";
 import { useSelector } from "react-redux";
-import "./cart.css"
+import { Button } from "./elements/Button.tsx";
 
 const Cart = () => {
     const { token } = ConnectUser();
@@ -44,22 +44,25 @@ const Cart = () => {
         <div>
             {
                 cartItems.length ?
-                    <div>
-                        <div className="cart-body">
-                            <h3 className="cart-title">Cosul meu</h3>
+                    <div className="grid pt-[1em] justify-center">
+                        <div className="block px-[30px] py-[10px]">
+                            <h3>Cosul meu</h3>
                             {
                                 cartItems.map((item: ItemTypeOrder) =>
                                     <CartItem key={item.id} item={item} />)
                             }
                         </div>
-                        <button className="pay" onClick={() => handleOrder()}>
+                        <Button onClick={() => handleOrder()} color="red">
                             <h2>
                                 Finalizeaza comanda
                             </h2>
-                        </button>
+                        </Button>
                         <br />
                     </div>
-                    : <h1 className="cart-empty">Nu aveti niciun produs in cos. Intorceti-va la cuparaturi!</h1>
+                    :
+                    <div className="flex justify-center py-2 px-10 ">
+                        <h1>Nu aveti niciun produs in cos. Intorceti-va la cuparaturi!</h1>
+                    </div> 
             }
             <Footer />
         </div>

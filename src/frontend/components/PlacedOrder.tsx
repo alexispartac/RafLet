@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import emailjs from '@emailjs/browser';
 import { deleteCart } from '../redux/cartSlice';
 import { ItemTypeOrder } from '../@types/item';
-import './cart.css'
+import { Button } from './elements/Button';
 interface OrderInfo {
     name: string,
     email: string,
@@ -45,7 +45,7 @@ const PlacedOrder = () => {
         total: totalPrice,
     });
 
-    useEffect(() => {
+    React.useEffect(() => {
         emailjs.init({
             publicKey: 'aKQS4bLVSyXfhE0Rc',
         });
@@ -97,16 +97,16 @@ const PlacedOrder = () => {
 
     const navigate = useNavigate();
     const handleItemHome = () => {
-        navigate("/");
+        navigate("/cart");
     }
 
     return (
-        <div className="order-placed">
-            <div onClick={handleItemHome}>
-                <img className='back-button' src={baseFavicon + "back-button.png"} alt="back-button" />
-            </div>
+        <div className="relative flex w-full justify-center py-5">
+            <button className='flex absolute w-[30px] top-[45px] left-[10px]' onClick={handleItemHome}>
+                <img src={baseFavicon + "back-button.png"} alt="back-button" />
+            </button>
             {!finishOrder ?
-                <div className='order-info'>
+                <div className='flex items-center flex-col '>
                     <h2>Detalii comanda</h2>
                     <br />
                     <div>
@@ -116,11 +116,11 @@ const PlacedOrder = () => {
                             )
                         }
                     </div>
-                    <h4>
+                    <h4 className='p-3'>
                         Total: {totalPrice} RON
                     </h4>
-                    <div className='order-info-input'>
-                        <form onSubmit={submitOrderInfo}>
+                    <div className="flex bg-gray-100 w-[300px] shadow-md p-5 m-5 rounded">
+                        <form className='flex flex-col w-full items-center' onSubmit={submitOrderInfo}>
                             <label htmlFor="name">*Nume:</label>
                             <input type="text" placeholder='Nume' name="name" id="name" required onChange={(e) => handleOrderInfo(e, "name")} />
                             <label htmlFor="email">*Email:</label>
@@ -134,13 +134,15 @@ const PlacedOrder = () => {
                             <input type="text" placeholder='Scara' name="scara" id="scara" onChange={(e) => handleOrderInfo(e, "scara")} />
                             <input type="text" placeholder='Apartament' name="apartament" id="apartament" onChange={(e) => handleOrderInfo(e, "apartament")} />
                             <label htmlFor="number" >*Numar de telefon:</label>
-                            <input type="number" placeholder='07XXXXXXXX' name="number" id="number" required onChange={(e) => handleOrderInfo(e, "phone")} />
-                            <input type="submit" className='submit' value="Trimite" />
+                            <input type='phone' placeholder='07XXXXXXXX' name="number" id="number" required onChange={(e) => handleOrderInfo(e, "phone")} />
+                            <Button onClick={() => {}} color='red'>
+                                <input  type="submit" className='submit' value="Trimite" />
+                            </Button>
                         </form>
                     </div>
                 </div>
                 :
-                <div className="info">
+                <div className="flex flex-col items-center text-center m-auto">
                     <h2>
                         Comanda a fost plasata cu succes!
                     </h2>

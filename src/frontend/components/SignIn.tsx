@@ -3,7 +3,6 @@ import ConnectUser from "../utils/hooks/ConnectUser";
 import { Link } from "react-router-dom";
 import Home from "./Home";
 import axios from 'axios'
-import './signin.css'
 
 const LOGIN_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/login";
 const SIGNIN_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/register";

@@ -7,7 +7,6 @@ import { addToCart } from "../redux/cartSlice";
 import { addToFavorite, deleteFromFavorite } from "../redux/favoriteSlice";
 import Footer from "./Footer";
 import { Button } from "./elements/Button";
-import "./item.css"
 
 interface SlideImageProps {
     images: string[];
@@ -29,13 +28,13 @@ const SlideImage: React.FC<SlideImageProps> = ({ images }) => {
     }
 
     return (
-        <div className="main-image" >
-            <button className="button-left" onClick={handleClickLeft}>
-                <img src={baseFavicon + "icons8-back-50.png"} alt="left" />
+        <div className="relative flex h-[450px] justify-center" >
+            <button className="absolute w-[40px] h-[40px] top-[120px] left-[10px] bg-transparent border-none z-2" onClick={handleClickLeft}>
+                <img className="w-full object-contain" src={baseFavicon + "icons8-back-50.png"} alt="left" />
             </button>
             <img src={baseImage + currentImage} alt="Main" />
-            <button className="button-right" onClick={handleClickRight}>
-                <img src={baseFavicon + "icons8-forward-50.png"} alt="right" />
+            <button className="absolute w-[40px] h-[40px] top-[120px] right-[10px] bg-transparent border-none z-2" onClick={handleClickRight}>
+                <img className="w-full object-contain" src={baseFavicon + "icons8-forward-50.png"} alt="right" />
             </button>
         </div>
     );
@@ -117,46 +116,47 @@ const Item = () => {
     }
 
     return (
-        <div className="item" key={item.id}>
+        //<div className="fixed top-0 left-0 w-screen h-screen overflow-scroll bg-gray-100 flex flex-col z-20"
+        <div className="fixed top-0 left-0 w-screen h-screen overflow-scroll bg-gray-100 flex flex-col z-20" key={item.id}>
             <br />
             <SlideImage images={item.img} />
-            <button className="heart-button" onClick={handleFavorite}>
+            <button className="absolute w-[40px] top-3 right-3 bg-transparent border-none" onClick={handleFavorite}>
                 {
                     !isFavorit ?
-                        <img className="heart" src={baseFavicon + "heart-empty.png"} alt="heart" />
+                        <img className="w-[30px] z-0 relative top-[1px]" src={baseFavicon + "heart-empty.png"} alt="heart" />
                         :
-                        <img className="heart" src={baseFavicon + "heart-full.png"} alt="heart" />
+                        <img className="w-[30px] z-0 relative top-[1px]" src={baseFavicon + "heart-full.png"} alt="heart" />
                 }
             </button>
-            <button className="back-button" onClick={handleItemHome}>
-                <img className="back" src={baseFavicon + "back-button.png"} alt="heart" />
+            <button className="absolute z-10 w-[40px] left-3 top-3 bg-transparent border-none" onClick={handleItemHome}>
+                <img className="w-[30px] z-0 relative" src={baseFavicon + "back-button.png"} alt="heart" />
             </button>
-            <div className="details">
+            <div className="flex flex-col p-[30px] gap-2.5 border-b border-gray-700 p-[10px_20px] my-[15px] rounded-[20px] border border-[rgba(0,0,0,0.262)]">
                 <h5 >{item.title}</h5>
                 <h3>{item.price} RON</h3>
-                <Button disabled={inCart} onClick={handleCart} color="green">
-                    Adauga - {item.price} RON
+                <Button disabled={inCart} onClick={handleCart} color="red">
+                    Adauga
                 </Button>
                 <h5> Livrare gratuita peste 200 RON</h5>
                 <h5> Retur 15 RON</h5>
                 <div onClick={handleDescribe}>
                     <h5> DESCRIERE </h5>
-                    <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
+                    <img className="w-5 relative -top-5 -right-[310px]" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                     {
                         describe ?
-                            <div className="describe">
-                                <p>{item.description}</p>
+                            <div className="w-full p-[10px] bg-transparent">
+                                <p className="leading-[25px]">{item.description}</p>
                             </div>
                             : null
                     }
                 </div>
                 <div onClick={handleMaintenance}>
                     <h5> COMPOZITIE SI INTRETINERE </h5>
-                    <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
+                    <img className="w-5 relative -top-5 -right-[310px]" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                     {
                         maintenance ?
-                            <div className="maintenance">
-                                <p>
+                            <div className="w-full p-[10px] bg-transparent">
+                                <p className="leading-[25px]">
                                     Material: 60% BUMBAC, 40% POLIESTER washing
                                     SPĂLĂLAŢI LA MAŞINĂ DE SPĂLAT, MAX. TEMP.30 ° C bleaching
                                     NU FOLOSIŢI ÎNĂLBITOR drying
@@ -170,11 +170,11 @@ const Item = () => {
                 </div>
                 <div onClick={handleDelivery}>
                     <h5> LIVRARE SI RETUR </h5>
-                    <img className="arrow-down" src={baseFavicon + "down-arrow.png"} alt="arrow" />
+                    <img className="w-5 relative -top-5 -right-[310px]" src={baseFavicon + "down-arrow.png"} alt="arrow" />
                     {
                         delivery ?
-                            <div className="delivery">
-                                <p>
+                            <div className="w-full p-[10px] bg-transparent">
+                                <p className="leading-[25px]">
                                     Politica de expediere <br />
                                     Ridicare din magazin <br />
                                     GRATUITĂ <br />

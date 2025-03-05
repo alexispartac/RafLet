@@ -5,7 +5,7 @@ const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
 const ItemsShow: React.FC<{showOnes: boolean, setShowOnes: React.Dispatch<React.SetStateAction<boolean>>}> = ({showOnes, setShowOnes }) => {
 
   return (
-        <div className='show-items'>
+        <div className='flex-row w-[50px] px-[2px] py-[14px] sm:w-[23px] '>
             {
                 showOnes ? 
                 <>
