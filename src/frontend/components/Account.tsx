@@ -30,8 +30,8 @@ import { Button } from "./elements/Button";
 // const LOGIN_URL = "http://localhost:5000/users/login";
 // const secretToken = "secret";
 
-// const LOGIN_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/login";
-const LOGIN_URL = "http://localhost:5000/users/login"
+const LOGIN_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/login";
+// const LOGIN_URL = "http://localhost:5000/users/login"
 
 const Account = () => {
     const { token, setUser, handleLogin, handleLogout } = ConnectUser();
@@ -73,8 +73,8 @@ const Account = () => {
                     email: email,
                     password: password
                 })
-                const accessToken = response.data.accessToken;
-                // let accessToken = JSON.parse(response.data.body).accesstoken;
+                // const accessToken = response.data.accessToken;
+                let accessToken = JSON.parse(response.data.body).accesstoken;
                 return accessToken;
             }
         } catch (error) {

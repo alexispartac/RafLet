@@ -9,7 +9,7 @@ const CartItem: React.FC<{ item: ItemTypeOrder }> = ({ item }) => {
     const [count, setCount]: [number, React.Dispatch<React.SetStateAction<number>>] = useState(item.quantity);
     return (
         <div className="flex flex-row p-[10px] gap-[10px]">
-            <img src={baseImage + item.img[0]} alt="img" className="w-[100px] h-[100px] object-scale-down" />
+            <img src={baseImage + item.img} alt="img" className="w-[100px] h-[100px] object-scale-down" />
             <div className="p-[10px]">
                 <p> {item.name} </p>
                 <p> {item.price * count} RON</p>

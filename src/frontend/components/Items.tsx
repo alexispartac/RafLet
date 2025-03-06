@@ -8,11 +8,12 @@ import NotFound from './NotFound';
 import ItemContiner from './ItemContiner';
 
 
-const ALL_ITEMS_URL = "http://localhost:5000/items/items"
-// const baseFavicon = "https://all-favicons.s3.us-east-1.amazonaws.com/favicons/";
+// const ALL_ITEMS_URL = "http://localhost:5000/items/items"
+const ALL_ITEMS_URL = "https://ijbgjpo7xg.execute-api.us-east-1.amazonaws.com/test/items"
 
-const FatchItems = async (category = '' as string): Promise<ItemType[]> =>
-    (await axios.get(`${ALL_ITEMS_URL}?category=${category}`)).data.items;
+const FatchItems = async (category = '' as string): Promise<ItemType[]> => 
+    (await axios.get(`${ALL_ITEMS_URL}?category=${category}`)).data;
+
 
 
 const Items = () => {
@@ -23,9 +24,9 @@ const Items = () => {
             queryKey: ['items', category],
             queryFn: () => FatchItems(category),
         });
-
+        
         if (isLoading) {
-            return <p> Loading... </p>
+            return 
         }
 
         if (error) {

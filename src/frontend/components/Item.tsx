@@ -119,7 +119,9 @@ const Item = () => {
         //<div className="fixed top-0 left-0 w-screen h-screen overflow-scroll bg-gray-100 flex flex-col z-20"
         <div className="fixed top-0 left-0 w-screen h-screen overflow-scroll bg-gray-100 flex flex-col z-20" key={item.id}>
             <br />
-            <SlideImage images={item.img} />
+            <div>
+                <SlideImage images={item.img} />
+            </div>
             <button className="absolute w-[40px] top-3 right-3 bg-transparent border-none" onClick={handleFavorite}>
                 {
                     !isFavorit ?

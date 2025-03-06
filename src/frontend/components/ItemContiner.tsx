@@ -41,8 +41,8 @@ const ItemContiner: React.FC<{ item: ItemType }> = ({ item }) => {
     }
     return (
         <div>
-            <div className="block relative px-[0.5rem]" >
-                <img className="w-full object-contain" onClick={handleItem} src={baseImage + item.img[1]} alt="1" />
+            <div className="block relative px-[0.5rem]"  >
+                <img className="w-full max-h-[270px] object-fill" onClick={handleItem} src={baseImage + item.img[1]} alt="1" />
                 <button className="absolute top-2 right-3 bg-transparent border-none" onClick={handleFavorite}>
                     {
                         !isFavorit ?
