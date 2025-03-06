@@ -13,7 +13,7 @@ const Cart = () => {
     const navigate = useNavigate();
     if (!token.user)
         return (
-            <div className="cart-continer">
+            <div className="flex flex-col text-center py-[10px]">
                 <p>Daca ai adugat produse in cos la vizita <br /> trecuta pe site, te rugam sa te loghezi.</p>
                 <br />
                 <Link to="/account">

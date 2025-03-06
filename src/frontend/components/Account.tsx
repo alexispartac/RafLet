@@ -3,7 +3,6 @@ import ConnectUser from "../utils/hooks/ConnectUser";
 import React, { useRef, useState, useEffect } from "react";
 // import jwt from "jsonwebtoken"
 import axios from 'axios'
-import "./account.css"
 import { Button } from "./elements/Button";
 
 
@@ -118,12 +117,12 @@ const Account = () => {
     }
 
     return (
-        <div className="account">
+        <div className="flex justify-center">
             {
                 !token.user ?
-                    <div className="account-body">
-                        <h5 ref={errRef} className={!success ? `error` : `success`}> {errMsg} </h5>
-                        <h3 className="title">Esti deja membru?</h3>
+                    <div className="flex flex-col py-4 px-20">
+                        <h5 ref={errRef} className={!success ? `p-5 text-red-700 text-lg text-center` : ''}> {errMsg} </h5>
+                        <h3 className="text-center">Esti deja membru?</h3>
                         <form onSubmit={handleSubmit}>
                             <label htmlFor='username'>
                                 Email
@@ -134,7 +133,7 @@ const Account = () => {
                                 id="username"
                                 value={email}
                                 ref={emailRef}
-                                className="email"
+                                className="border mt-2 h-8 w-full border-b border-gray-500 text-sm px-2"
                                 required
                                 autoComplete="off"
                                 onChange={(e) => setEmail(e.target.value)}
@@ -147,7 +146,7 @@ const Account = () => {
                             <input
                                 type="password"
                                 id='password'
-                                className="password"
+                                className="border mt-2 h-8 w-full border-b border-gray-500 text-sm px-2"
                                 value={password}
                                 required
                                 onChange={(e) => setPassword(e.target.value)}
@@ -157,24 +156,23 @@ const Account = () => {
                             <input
                                 type="submit"
                                 value="Intra in cont"
-                                className="login"
+                                className="py-3 w-full bg-red-700 text-white shadow-md text-sm border border-white hover:bg-red-300 hover:text-white"
                             />
                         </form>
                         <br />
-                        <p className="signin"> Daca inca nu esti membru, nu pierde timpul! <Link to="/signin">Sign in</Link></p>
+                        <p className="text-center"> Daca inca nu esti membru, nu pierde timpul! <Link to="/signin">Sign in</Link></p>
                     </div>
                     :
-                    <div>
-                        <h2 className="title"> Contul meu </h2>
-                        <div className="account-details">
+                    <div className="flex flex-col justify-center pt-5" >
+                        <h2 className="flex justify-center text-center"> Contul meu </h2>
+                        <div className="flex flex-col py-10">
                             <Link to="/details-account">Detalii despre cont</Link>
                             <Link to="/my-discount">Reduceriile mele</Link>
                             <Link to="/cart">Cosul meu</Link>
                             <Link to="/favorite">Favoritele mele</Link>
                             {/* {   VerifyAdmin()  ?
-                    <Link to="/admin">Admin</Link> : null
-                } */}
-
+                            <Link to="/admin">Admin</Link> : null
+                        } */}
                             <br />
                             <Button color="red" onClick={handleLogout}> Iesi din cont </Button>
                         </div>

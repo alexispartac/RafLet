@@ -1,6 +1,5 @@
 import React from "react" 
 import axios from "axios";
-import "./add-discount.css"
 
 const URL_DISCOUNT = 'http://localhost:5000/addDiscount';
 const AddDiscount = () => {
@@ -19,7 +18,6 @@ const AddDiscount = () => {
         .catch(() => {
             alert("Error adding discount!");
         })
-        console.log(discount);
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +31,7 @@ const AddDiscount = () => {
 
 
     return (
-        <div className="discount">
+        <div className="flex flex-col justify-center px-[30px] py-[10px]">
             <input type="text" placeholder={`${discount}`} value={discount} onChange={e => handleChange(e)}/>
             <button onClick={handleAddDiscount}> Add discount</button>
         </div>

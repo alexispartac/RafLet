@@ -14,7 +14,7 @@ const Footer = () => {
                     <img className="w-6 h-6" src={baseFavicon + "facebook.png"} alt="filter" />
                 </div>
             </div>
-            <div className="flex flex-col gap-5 p-2 border-b border-gray-600 info">
+            <div className="flex flex-col text-center gap-5 p-2 border-b border-gray-600 info">
                 <h6>AJUTOR SI CONTACT</h6>
                 <h6>ASPECT DE ORDIN JURIDIC</h6>
                 <h6>REGULI SI POLITICA DE CONFIDENTIALITATE</h6>

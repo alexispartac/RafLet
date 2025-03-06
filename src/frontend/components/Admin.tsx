@@ -3,7 +3,6 @@ import React from "react";
 import axios from "axios";
 import AddItem from "./AddItem";
 import AddDiscount from "./AddDiscount";
-import "./admin.css"
 import { DetailsType } from "../@types/admin";
 const adminId = '8634876-234324-324234-32432432';
 
@@ -14,7 +13,7 @@ const Admin = () => {
         user: '8634876-234324-324234-32432432'
     }
 
-    const [details, setDetails] : [ details: DetailsType , setDetails : React.Dispatch<React.SetStateAction<DetailsType>>] = React.useState({
+    const [details, setDetails]: [details: DetailsType, setDetails: React.Dispatch<React.SetStateAction<DetailsType>>] = React.useState({
         users: 0,
         orders: 0,
         products: 0,
@@ -22,53 +21,53 @@ const Admin = () => {
         monthlyIncome: 0,
         yearlyIncome: 0,
         totalIncome: 0
-    }) 
+    })
 
-    const update = async () =>  {
-        return await axios.get(URL_DETAILS, 
+    const update = async () => {
+        return await axios.get(URL_DETAILS,
             {
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',
                     'Accept': 'application/json'
-                },   
+                },
                 withCredentials: true
             }
         )
-        .then((response) => {
-            return response.data;
-        })
-        .catch(() => {
-            return false;
-        })
+            .then((response) => {
+                return response.data;
+            })
+            .catch(() => {
+                return false;
+            })
     }
 
-    const handleClickUpdateDetails = async() => {
+    const handleClickUpdateDetails = async () => {
         // cerere pentru a actualiza detaliile
-        const updateDetails : DetailsType = await update();
+        const updateDetails: DetailsType = await update();
 
-        if(!updateDetails)
+        if (!updateDetails)
             alert("Eroare la actualizarea detaliilor");
 
-        setDetails( {...details, ...updateDetails} )
+        setDetails({ ...details, ...updateDetails })
     }
 
-    if(token.user === adminId)
+    if (token.user === adminId)
         return (
-            <div className="admin">
-                <div className="statistics">
-                    <div className="continer">
+            <div className="flex flex-col py-[10px] px-[30px]">
+                <div className="flex flex-col justify-center w-full">
+                    <div className="flex flex-col ">
                         <h4>Statistici</h4>
                         {/* Se actualizeaza intr o singura cerere apasand pe un buton */}
                         <button className="update" onClick={handleClickUpdateDetails}> Actualizeaza </button>
-                        <div className="details">
+                        <div className="grid col-span-2 gap-[100px] p-[5px]">
                             <div>
-                                <h5>Numar de utilizatori: </h5>                   
-                                <h5>Numar comenzi: </h5>                          
-                                <h5>Numar de produse: </h5>                       
-                                <h5>Numar de produse vandute: </h5>               
-                                <h5>Incasari lunare: </h5>                         
-                                <h5>Incasari anuale: </h5>                         
-                                <h5>Incasari totale: </h5>                            
+                                <h5>Numar de utilizatori: </h5>
+                                <h5>Numar comenzi: </h5>
+                                <h5>Numar de produse: </h5>
+                                <h5>Numar de produse vandute: </h5>
+                                <h5>Incasari lunare: </h5>
+                                <h5>Incasari anuale: </h5>
+                                <h5>Incasari totale: </h5>
                             </div>
                             <div>
                                 <h5>{details.users}</h5>                          {/* cerere numar de utilizatori */}
@@ -80,9 +79,6 @@ const Admin = () => {
                                 <h5>{details.totalIncome}</h5>                          {/* cerere incasari totale*/}
                             </div>
                         </div>
-                        <div className="">
-
-                        </div>
                         <br />
                         <h4> Adauga produs </h4>
                         <AddItem />
@@ -93,6 +89,6 @@ const Admin = () => {
                 </div>
             </div>
         );
-} 
+}
 
 export default Admin;

@@ -1,7 +1,6 @@
 import * as React from "react"
 import uuid4 from "uuid4"
 import axios from "axios"
-import "./add-item.css"
 
 
 const URL_ADD_IMAGE = 'http://localhost:5000/items/upload';
@@ -110,16 +109,16 @@ const AddItem = () => {
     };
 
     return (
-        <div className="add-item">
-            <div className="items-text">
-                <div className="label">
+        <div className="py-2 flex flex-col">
+            <div className="flex flex-row my-1 gap-24">
+                <div className="flex flex-col my-1">
                     <label htmlFor="title"> Nume </label>
                     <label htmlFor="price"> Pret </label>
                     <label htmlFor="size"> Marime </label>
                     <label htmlFor="color"> Culoare </label>
                     <label htmlFor="description"> Descriere </label>
                 </div>
-                <div className="input">
+                <div className="flex flex-col my-1">
                     <input type="text" required name="title" placeholder={item.title} value={item.title} onChange={(e) => handleChangeItem(e, "title")} />
                     <input type="text" required name="price" placeholder={`${item.price}`} value={item.price} onChange={(e) => handleChangeItem(e, "price")} />
                     <input type="text" required name="size" placeholder={item.sizes.size} value={item.sizes.size} onChange={(e) => handleChangeItem(e, "size")} />
@@ -128,7 +127,7 @@ const AddItem = () => {
                 </div>
             </div>
             <h4> In troduceti imagini</h4>
-            <div className="drag-and-drop-continer">
+            <div className="border-2 border-dashed border-gray-300 rounded-lg w-72 h-52 text-gray-300 text-center cursor-pointer">
                 <div
                     className="drag-and-drop-img"
                     id="drop-area"
@@ -138,7 +137,7 @@ const AddItem = () => {
                     <br /><br /><br />
                     Drag & Drop Image Here
                 </div>
-                <div id="preview" className="preview">
+                <div id="my-5 mx-2" className="preview">
                     {
                         insertImg &&
                         insertImg.map(img => (
@@ -151,7 +150,7 @@ const AddItem = () => {
                 <input
                     type="submit"
                     value="Trimite item"
-                    className="send-item"
+                    className="w-36 h-8"
                 />
             </form>
         </div>

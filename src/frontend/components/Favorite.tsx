@@ -4,7 +4,7 @@ import { ItemType } from "../@types/item";
 import ConnectUser from "../utils/hooks/ConnectUser";
 import FavoriteItem from "./FavoriteItem";
 import { useSelector } from "react-redux";
-import "./favorite.css"
+import { Button } from "./elements/Button";
 
 
 const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
@@ -12,22 +12,21 @@ const baseImage = "https://images-product-rafa.s3.amazonaws.com/";
 const Favorite = () => {
 
     const listOfFavorite = useSelector((state: any) => state.favorite.favorite);
-    const { token } = ConnectUser();
+    const { token,  } = ConnectUser();
 
     if (!token.user)
         return (
-            <>
-                <h1 className="favorite-title">Favorite</h1>
-                <div className="favorite-continer">
-                    <img src={baseImage + "favorite-img.png"} alt="" />
-                    <h1>Adauga</h1>
+            <div className="flex flex-col text-center py-[10px]">
+                <h1 className="text-3xl">Favorite</h1>
+                <div className="flex flex-col justify-center py-[10px] gap-[10px]">
+                    <img className="p-[4rem] sm:px-[500px] sm:py-[20px]" src={baseImage + "favorite-img.png"} alt="" />
                     <p>Salveaza rapid articolele pentru mai tarziu</p>
                     {
                         !token.user ?
                             <Link to="/account">
-                                <button className="login-button">
+                                <Button onClick={() => {}} color="red">
                                     Conecteaza-te
-                                </button>
+                                </Button>
                             </Link>
                             : null
                     }
@@ -35,7 +34,7 @@ const Favorite = () => {
                 <div className="space"></div>
                 {
                     !token.user ?
-                        <div className="favorite-to-home">
+                        <div>
                             <h3>Daca nu doresti sa intrii in contul tau continua sa vizionezi produsele.</h3>
                             <p>
                                 <Link to="/">
@@ -45,23 +44,25 @@ const Favorite = () => {
                         </div>
                         : null
                 }
-            </>
+            </div>
         );
 
     return (
         <div>
             {
                 listOfFavorite ?
-                    <div className="favorite-body">
-                        <h3>Favoritele tale</h3>
-                        {
-                            listOfFavorite.map((favorit: ItemType, index: number) => {
-                                return <FavoriteItem item={favorit} key={"favorite" + index} />
-                            })
-                        }
+                    <div className="grid pt-[1em] justify-center">
+                        <div className="block px-[30px] py-[10px]">
+                            <h3>Favoritele tale</h3>
+                            {
+                                listOfFavorite.map((favorit: ItemType) => {
+                                    return <FavoriteItem item={favorit} key={favorit.id} />
+                                })
+                            }
+                        </div>
                     </div>
                     :
-                    <h1 className="favorite-empty">Nu aveti niciun produs favorit. Intorceti-va la cuparaturi!</h1>
+                    <h1 className="flex justify-center py-5 px-10 ">Nu aveti niciun produs favorit. Intorceti-va la cuparaturi!</h1>
             }
         </div>
     );

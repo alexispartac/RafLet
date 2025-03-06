@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
-import emailjs from '@emailjs/browser';
+import { Link, useNavigate } from 'react-router-dom';
+import emailjs from "@emailjs/browser"
 import { deleteCart } from '../redux/cartSlice';
 import { ItemTypeOrder } from '../@types/item';
 import { Button } from './elements/Button';
@@ -61,9 +61,9 @@ const PlacedOrder = () => {
 
     const SendEmail = () => {
         emailjs.send('service_m7xm4on', 'template_zael9ym', orderInfo)
-            .then((result) => {
+            .then((result: any) => {
                 console.log(result.text);
-            }, (error) => {
+            }, (error: any) => {
                 console.log(error.text);
             });
     }
@@ -135,6 +135,7 @@ const PlacedOrder = () => {
                             <input type="text" placeholder='Apartament' name="apartament" id="apartament" onChange={(e) => handleOrderInfo(e, "apartament")} />
                             <label htmlFor="number" >*Numar de telefon:</label>
                             <input type='phone' placeholder='07XXXXXXXX' name="number" id="number" required onChange={(e) => handleOrderInfo(e, "phone")} />
+                            <br />
                             <Button onClick={() => {}} color='red'>
                                 <input  type="submit" className='submit' value="Trimite" />
                             </Button>
